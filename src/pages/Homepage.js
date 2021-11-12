@@ -11,11 +11,12 @@ import PermIdentitySharpIcon from '@material-ui/icons/PermIdentitySharp';
 
 // import Header from "./pages/Header"
 import Grid from '@mui/material/Grid';
+import { fontWeight } from '@mui/system';
 
 export default function Homepage() {
   return (
-    <Container size="lg">
-      <Grid container spacing={2}>
+    <Container size="lg" >
+      <Grid container spacing={2} paddingTop="20px">
         <Grid item xs={3}>
           <Typography variant="h6" color="primary" component="h2" gutterBottom>
             Troubleshooting
@@ -32,10 +33,13 @@ export default function Homepage() {
           />
         </Grid>
         <Grid item xs={3}>
-          <div style={{ textAlign: 'right' }}>
-            <HelpIcon color="primary" />
-            <SettingsIcon color="primary" />
-            <PermIdentitySharpIcon>add_circle</PermIdentitySharpIcon>
+          <div style={{ textAlign: 'right', 
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexWrap: 'wrap'}}>
+            <HelpIcon color="primary" /><span style={{marginRight: "10px", color:"blue", fontWeight: "600" }}>Help</span>
+            <SettingsIcon color="primary" /><span style={{marginRight: "10px", color:"blue", fontWeight: "600" }} >Setting</span>
+            <PermIdentitySharpIcon>add_circle</PermIdentitySharpIcon><span style={{marginRight: "10px", color:"blue", fontWeight: "600" }}>Welcome</span>
           </div>
         </Grid>
       </Grid>
