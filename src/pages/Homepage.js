@@ -60,7 +60,7 @@ const steps = [
 export default function Homepage() {
   const classes = useStyles();
   return (
-    <Container size="lg" style={{backgroundColor: "lightgray"}} >
+    <Container size="lg"  >
       <Grid container spacing={2} paddingTop="20px">
         <Grid item xs={3}>
           <Typography variant="h6" color="primary" component="h2" gutterBottom>
@@ -139,37 +139,7 @@ export default function Homepage() {
        </Grid>
     </Grid>  
     
-    {/* Fullwidth Box */}
-
-    <Box >
-    <Grid container>
-      <Grid item xs={12}>
-        <Item  style={{ height: "200px" ,marginTop: "20px"}}>
-          <FormControl variant="filled" sx={{ minWidth: 240 }}>
-              <InputLabel>Start Job</InputLabel>
-              <Select>
-                <MenuItem>Start Job</MenuItem>
-              </Select>
-            </FormControl> </Item>
-      </Grid>
-      
-    </Grid>
-    </Box>
-
-    {/* Two Boxes */}
     
-    <Box style= {{paddingBottom: "20px"}}>
-    <Grid container >
-      <Grid item xs={6}>
-        <Item  style={{ height: "200px" ,marginTop: "20px" , marginRight: "10px" }} >job #</Item>
-      </Grid>
-      <Grid item xs={6}>
-        <Item  style={{ height: "200px" ,marginTop: "20px"}}> Detailed Log</Item>
-      </Grid>
-      
-    </Grid>
-    </Box>
-
 </Container>
 
 
