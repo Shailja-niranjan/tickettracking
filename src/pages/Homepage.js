@@ -7,13 +7,50 @@ import { makeStyles } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/Help';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PermIdentitySharpIcon from '@material-ui/icons/PermIdentitySharp';
-// import Box from '@material-ui/core/Box';
+import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 
 // import Header from "./pages/Header"
 import Grid from '@mui/material/Grid';
 import { fontWeight } from '@mui/system';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  toolbar: {
+    minHeight: '10px'
+  },
+  startjob: {
+  m: 1,
+  border: 1,
+  width: '5rem',
+  height: '5rem',
+  }
+}));
+
+
+const steps = [
+  'Start Task',
+  'Provide Details',
+  'Job Estimation',
+  'Actions'
+];
+
+
+
 export default function Homepage() {
+  const classes = useStyles();
   return (
     <Container size="lg" >
       <Grid container spacing={2} paddingTop="20px">
@@ -43,6 +80,68 @@ export default function Homepage() {
           </div>
         </Grid>
       </Grid>
+
+      {/* App Bar */}
+      <Box sx={{ flexGrow: 1 }} style={{height: "45px" , paddingTop: "10px"}}>
+      <AppBar position="static">
+        <Toolbar  className={classes.toolbar}>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton> 
+          <Typography  style={{paddingRight: '20px'}}>
+            Troubleshooting
+          </Typography>
+          <Typography style={{paddingRight: '20px'}}>
+            Issue Tracking
+          </Typography>
+          <Typography>
+            Reports
+          </Typography>
+         
+        </Toolbar>
+      </AppBar>
+    </Box>
+
+    {/* Issue Identification Bar Drop Down */}
+    <Grid container spacing={2} paddingTop="20px">
+       <Grid item xs={3}>
+            <FormControl variant="filled" sx={{ minWidth: 240 }}>
+              <InputLabel>Issue Identification</InputLabel>
+              <Select>
+                <MenuItem>Issue Identification</MenuItem>
+                <MenuItem>Issue Identification</MenuItem>
+              </Select>
+            </FormControl>
+       </Grid>
+       <Grid item xs={6}>
+          <Box sx={{ width: '100%' }} style={{textAlign: "right", paddingLeft: "300px"}}>
+                <Stepper activeStep={1} alternativeLabel>
+                    {steps.map((label) => (
+                    <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                </Step>
+                      ))}
+                </Stepper>
+          </Box>
+       </Grid>
+    </Grid>  
+  
+
+  {/* Fullwidth Box */}
+ 
+
     </Container>
+
+
+
+
+
+
   );
 }
