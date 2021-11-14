@@ -19,7 +19,8 @@ import Select from '@mui/material/Select';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 // import Header from "./pages/Header"
 import Grid from '@mui/material/Grid';
 import { fontWeight } from '@mui/system';
@@ -39,6 +40,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'left',
+  color: theme.palette.text.secondary,
+}));
+
 
 const steps = [
   'Start Task',
@@ -52,7 +60,7 @@ const steps = [
 export default function Homepage() {
   const classes = useStyles();
   return (
-    <Container size="lg" >
+    <Container size="lg" style={{backgroundColor: "lightgray"}} >
       <Grid container spacing={2} paddingTop="20px">
         <Grid item xs={3}>
           <Typography variant="h6" color="primary" component="h2" gutterBottom>
@@ -107,7 +115,6 @@ export default function Homepage() {
         </Toolbar>
       </AppBar>
     </Box>
-
     {/* Issue Identification Bar Drop Down */}
     <Grid container spacing={2} paddingTop="20px">
        <Grid item xs={3}>
@@ -131,13 +138,39 @@ export default function Homepage() {
           </Box>
        </Grid>
     </Grid>  
-  
+    
+    {/* Fullwidth Box */}
 
-  {/* Fullwidth Box */}
- 
+    <Box >
+    <Grid container>
+      <Grid item xs={12}>
+        <Item  style={{ height: "200px" ,marginTop: "20px"}}>
+          <FormControl variant="filled" sx={{ minWidth: 240 }}>
+              <InputLabel>Start Job</InputLabel>
+              <Select>
+                <MenuItem>Start Job</MenuItem>
+              </Select>
+            </FormControl> </Item>
+      </Grid>
+      
+    </Grid>
+    </Box>
 
-    </Container>
+    {/* Two Boxes */}
+    
+    <Box style= {{paddingBottom: "20px"}}>
+    <Grid container >
+      <Grid item xs={6}>
+        <Item  style={{ height: "200px" ,marginTop: "20px" , marginRight: "10px" }} >job #</Item>
+      </Grid>
+      <Grid item xs={6}>
+        <Item  style={{ height: "200px" ,marginTop: "20px"}}> Detailed Log</Item>
+      </Grid>
+      
+    </Grid>
+    </Box>
 
+</Container>
 
 
 
