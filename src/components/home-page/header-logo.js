@@ -5,7 +5,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 export default function Logo() {
   return (
     
-    <Typography variant="h6" color="primary" component="h2" gutterBottom>
+    <Typography variant="h6" color="primary" component="h2" gutterBottom style= {{paddingLeft: "20px"}}>
       Troubleshooting
       <ArrowDropDownIcon color="primary" />
     </Typography>
