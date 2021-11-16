@@ -9,6 +9,7 @@ import IssueTracking from '../components/home-page/issue-tracking.js';
 import Reports from '../components/home-page/reports.js';
 import IssueIdentification from '../components/home-page/issue-identification.js';
 import StepperProgress from '../components/home-page/stepper.js';
+import StartJob from '../components/home-page/start-job.js';
 
 //import SearchBar from 'material-ui-search-bar';
 import Typography from '@material-ui/core/Typography';
@@ -136,12 +137,8 @@ export default function Homepage() {
     <Grid container>
       <Grid item xs={12}>
         <Item  style={{ height: "200px" ,marginTop: "10px"}}>
-          <FormControl variant="filled" sx={{ minWidth: 240 }}>
-              <InputLabel>Start Job</InputLabel>
-              <Select>
-                <MenuItem>Start Job</MenuItem>
-              </Select>
-            </FormControl> </Item>
+          <StartJob />
+           </Item>
       </Grid>
       
     </Grid>

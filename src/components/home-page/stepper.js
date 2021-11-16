@@ -10,7 +10,7 @@ const steps = [
     'Actions'
   ];
 
-export default function stepper() {
+export default function StepperBar() {
     return (
       
         <Stepper activeStep={1} alternativeLabel>

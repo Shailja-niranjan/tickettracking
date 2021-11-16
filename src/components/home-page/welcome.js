@@ -1,7 +1,7 @@
 import React from "react";
 import PermIdentitySharpIcon from '@material-ui/icons/PermIdentitySharp';
 
-export default function Logo() {
+export default function WelcomeMenu() {
     return (
         <div style={{ textAlign: 'right', 
                         display: 'flex',

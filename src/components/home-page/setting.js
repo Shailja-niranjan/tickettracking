@@ -1,7 +1,7 @@
 import React from "react";
 import SettingsIcon from '@material-ui/icons/Settings';
 
-export default function Logo() {
+export default function SettingMenu() {
     return (
         <div style={{ textAlign: 'right', 
                         display: 'flex',

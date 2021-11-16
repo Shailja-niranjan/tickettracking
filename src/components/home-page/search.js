@@ -3,7 +3,7 @@ import SearchBar from 'material-ui-search-bar';
 import { styled } from '@mui/material/styles';
 
 
-export default function Logo() {
+export default function Search_Option() {
     return (
         <SearchBar
         placeholder="search platform for tool.."

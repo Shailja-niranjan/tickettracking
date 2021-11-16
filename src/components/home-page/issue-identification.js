@@ -5,7 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 
 
-export default function issue_identification() {
+export default function Issue_Identification() {
     return (
       
       <FormControl variant="filled" sx={{ minWidth: 200 }}>
