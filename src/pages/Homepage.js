@@ -1,12 +1,21 @@
 import React from 'react';
+import HeaderLogo from '../components/home-page/header-logo';
+import SearchBar from '../components/home-page/search.js';
+import HelpOption from '../components/home-page/help.js';
+import SettingOption from '../components/home-page/setting.js';
+import WelcomeOption from '../components/home-page/welcome.js';
+import TroubleshootingOption from '../components/home-page/troubleshooting-option.js';
+import IssueTracking from '../components/home-page/issue-tracking.js';
+import Reports from '../components/home-page/reports.js';
+import IssueIdentification from '../components/home-page/issue-identification.js';
+import StepperProgress from '../components/home-page/stepper.js';
+
+//import SearchBar from 'material-ui-search-bar';
 import Typography from '@material-ui/core/Typography';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import SearchBar from 'material-ui-search-bar';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core';
-import HelpIcon from '@material-ui/icons/Help';
-import SettingsIcon from '@material-ui/icons/Settings';
-import PermIdentitySharpIcon from '@material-ui/icons/PermIdentitySharp';
+
+
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -21,9 +30,15 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 // import Header from "./pages/Header"
 import Grid from '@mui/material/Grid';
-import { fontWeight } from '@mui/system';
+import { bgcolor, fontWeight } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +59,7 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'left',
-  color: theme.palette.text.secondary,
+  color: theme.palette.text.darkgray,
 }));
 
 
@@ -60,31 +75,22 @@ const steps = [
 export default function Homepage() {
   const classes = useStyles();
   return (
-    <Container size="lg"  >
-      <Grid container spacing={2} paddingTop="20px">
+    <div size="lg"  >
+      <Grid container spacing={2} paddingTop="10px">
         <Grid item xs={3}>
-          <Typography variant="h6" color="primary" component="h2" gutterBottom>
-            Troubleshooting
-            <ArrowDropDownIcon color="primary" />
-          </Typography>
+          <HeaderLogo />
         </Grid>
         <Grid item xs={6}>
-          <SearchBar
-            placeholder="search platform for tool.."
-            style={{
-              margin: '0 auto',
-              maxWidth: 400,
-            }}
-          />
+           <SearchBar />
         </Grid>
         <Grid item xs={3}>
           <div style={{ textAlign: 'right', 
                         display: 'flex',
                         alignItems: 'center',
                         flexWrap: 'wrap'}}>
-            <HelpIcon color="primary" /><span style={{marginRight: "10px", color:"blue", fontWeight: "600" }}>Help</span>
-            <SettingsIcon color="primary" /><span style={{marginRight: "10px", color:"blue", fontWeight: "600" }} >Setting</span>
-            <PermIdentitySharpIcon>add_circle</PermIdentitySharpIcon><span style={{marginRight: "10px", color:"blue", fontWeight: "600" }}>Welcome</span>
+            <HelpOption />
+            <SettingOption />
+            <WelcomeOption />
           </div>
         </Grid>
       </Grid>
@@ -102,45 +108,73 @@ export default function Homepage() {
           >
             <MenuIcon />
           </IconButton> 
-          <Typography  style={{paddingRight: '20px'}}>
-            Troubleshooting
-          </Typography>
-          <Typography style={{paddingRight: '20px'}}>
-            Issue Tracking
-          </Typography>
-          <Typography>
-            Reports
-          </Typography>
+          <TroubleshootingOption />
+          <IssueTracking />
+          <Reports />
          
         </Toolbar>
       </AppBar>
     </Box>
     {/* Issue Identification Bar Drop Down */}
-    <Grid container spacing={2} paddingTop="20px">
-       <Grid item xs={3}>
-            <FormControl variant="filled" sx={{ minWidth: 240 }}>
-              <InputLabel>Issue Identification</InputLabel>
-              <Select>
-                <MenuItem>Issue Identification</MenuItem>
-                <MenuItem>Issue Identification</MenuItem>
-              </Select>
-            </FormControl>
-       </Grid>
-       <Grid item xs={6}>
-          <Box sx={{ width: '100%' }} style={{textAlign: "right", paddingLeft: "300px"}}>
-                <Stepper activeStep={1} alternativeLabel>
-                    {steps.map((label) => (
-                    <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                </Step>
-                      ))}
-                </Stepper>
-          </Box>
-       </Grid>
+   <div style={{backgroundColor: "lightgray", paddingTop: "20px" , paddingLeft: "10px", paddingRight:"10px" }}> 
+    <Grid container spacing={2} paddingTop="10px" style={{backgroundColor: "white"}}>
+      
+          <Grid item xs={3}>
+                <IssueIdentification />
+          </Grid>
+          <Grid item xs={6}>
+              <Box sx={{ width: '100%' }} style={{textAlign: "right", paddingLeft: "300px"}}>
+                    <StepperProgress />
+              </Box>
+          </Grid>
+         
     </Grid>  
     
+    {/* Fullwidth Box */}
+
+    <Box >
+    <Grid container>
+      <Grid item xs={12}>
+        <Item  style={{ height: "200px" ,marginTop: "10px"}}>
+          <FormControl variant="filled" sx={{ minWidth: 240 }}>
+              <InputLabel>Start Job</InputLabel>
+              <Select>
+                <MenuItem>Start Job</MenuItem>
+              </Select>
+            </FormControl> </Item>
+      </Grid>
+      
+    </Grid>
+    </Box>
+
+    {/* Two Boxes */}
     
-</Container>
+    <Box style= {{paddingBottom: "20px"}}>
+    <Grid container >
+    <Grid item xs={6}>
+        <Item  style={{ height: "300px" ,marginTop: "10px",marginRight: "5px", fontWeight: "300"}}> 
+         <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Job#</TableCell>
+                <TableCell>Status</TableCell>
+              </TableRow>
+            </TableHead>
+          </Table>
+        </TableContainer>
+        
+        
+        </Item>
+      </Grid>
+      <Grid item xs={6}>
+        <Item  style={{ height: "300px" ,marginTop: "10px"}}> Detailed Log</Item>
+      </Grid>
+      
+    </Grid>
+    </Box>
+ </div>
+</div>
 
 
 
