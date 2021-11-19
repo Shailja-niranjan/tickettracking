@@ -18,6 +18,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 const useStyles = theme => ({
   table: {
     minWidth: 650,
+    display: "flex"
   },
   tableContainer: {
     borderRadius: 15,
@@ -31,6 +32,10 @@ const useStyles = theme => ({
      borderRadius: 8,
      padding: '3px 10px',
      display: 'inline-block'
+  },
+  userRowStyle: {
+       color: 'lightgray',
+       minWidth: '100%'
   }
 
 });
@@ -60,6 +65,40 @@ const tempJobList = [
       startedBy: 'Sushil K Madwani',
       userId: 'smadwani',
       status: 'Issues found'
+  },
+  {
+      startTime: '09/08/2021 9:14 AM',
+      jobId: 4453,
+      clusterName: 'na-us',
+      product: 'Equinix Fabric',
+      jobTitle: 'Fabric VC Sanity Check',
+      jobInput: {
+          UUID: 'jkfsdahf-gjfhd763-jhfkj8834sj',
+          WalkDirection: 'A-Z',
+          Duration: '20 sec',
+          jumpHost: 'test',
+          Test: 'test'
+      },
+      startedBy: 'Sushil K Madwani',
+      userId: 'smadwani',
+      status: 'Active'
+  },
+  {
+      startTime: '09/08/2021 9:14 AM',
+      jobId: 4453,
+      clusterName: 'na-us',
+      product: 'Equinix Fabric',
+      jobTitle: 'Fabric VC Sanity Check',
+      jobInput: {
+          UUID: 'jkfsdahf-gjfhd763-jhfkj8834sj',
+          WalkDirection: 'A-Z',
+          Duration: '20 sec',
+          jumpHost: 'test',
+          Test: 'test'
+      },
+      startedBy: 'Sushil K Madwani',
+      userId: 'smadwani',
+      status: 'OK'
   }
 ]
 
@@ -102,9 +141,10 @@ class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      
         <TableContainer component={Paper} className={classes.tableContainer}>
       <Table className={classes.table} aria-label="simple table">
+        <div>
         <TableHead>
           <TableRow> 
             <TableCell style={{color:"lightgray"}}>Time</TableCell>
@@ -114,52 +154,47 @@ class App extends Component {
             <TableCell style={{color:"lightgray"}} align="right">Job Input</TableCell>
             <TableCell style={{color:"lightgray"}} align="right">By</TableCell>
             <TableCell style={{color:"lightgray"}}align="right">Status</TableCell>
+            
           </TableRow>
+          
         </TableHead>
+        </div><div>
         <TableBody>
+        
         <InfiniteScroll
           dataLength={this.state.items.length}
           next={this.fetchMoreData}
           hasMore={this.state.hasMore}
           loader={<h4>Loading...</h4>}
           endMessage={
-            <p style={{ textAlign: "center" }}>
+            <p style={{ textAlign: "center" , width: "1200px"}}>
               <b>Yay! You have seen it all</b>
             </p>
           }
         >
           
           {this.state.items.map((i, index) => (
-            <div style={style} key={index}>
-              <TableRow>
+            // <div className={classes.userRowStyle} key={index}>
+            <TableRow className={classes.table}>
             <TableCell>{i.startTime}</TableCell>
-            <TableCell align="right"><Typography>{i.jobId}</Typography></TableCell>
+            <TableCell ><Typography>{i.jobId}</Typography></TableCell>
             <TableCell align="right">{i.product}</TableCell>
             <TableCell align="right">{i.jobTitle}</TableCell>
             <TableCell align="right">{i.startedBy}</TableCell>
             <TableCell align="right">{i.status}</TableCell>
           </TableRow>
-            </div>
+            // </div>
           ))}          
           
           
-          {/* {Object.keys(JobList).map(item => (
-            <TableRow>
-            <TableCell>{JobList[item].startTime}</TableCell>
-            <TableCell align="right"><Typography>{JobList[item].jobId}</Typography></TableCell>
-            <TableCell align="right">{JobList[item].product}</TableCell>
-            <TableCell align="right">{JobList[item].jobTitle}</TableCell>
-            <TableCell align="right">{JobList[item].startedBy}</TableCell>
-            <TableCell align="right">{JobList[item].status}</TableCell>
-          </TableRow>
-
-          ))} */}
+        
 
         </InfiniteScroll>
         </TableBody>
+        </div>
       </Table>
     </TableContainer>
-      </div>
+      
     );
   }
 }
