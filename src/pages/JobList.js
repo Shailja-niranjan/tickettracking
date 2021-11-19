@@ -36,7 +36,17 @@ const useStyles = theme => ({
   userRowStyle: {
        color: 'lightgray',
        minWidth: '100%'
-  }
+  },
+  smallWidthStyle:{
+      width: '100px'
+  },
+  mediumWidthStyle:{
+    width: '150px'
+ },
+ largeWidthStyle:{
+  width: '200px'
+}
+  
 
 });
 
@@ -147,13 +157,13 @@ class App extends Component {
         <div>
         <TableHead>
           <TableRow> 
-            <TableCell style={{color:"lightgray"}}>Time</TableCell>
-            <TableCell style={{color:"lightgray"}} align="right">Job ID</TableCell>
-            <TableCell style={{color:"lightgray"}} align="right">Product</TableCell>
-            <TableCell style={{color:"lightgray"}} align="right">Job Title</TableCell>
-            <TableCell style={{color:"lightgray"}} align="right">Job Input</TableCell>
-            <TableCell style={{color:"lightgray"}} align="right">By</TableCell>
-            <TableCell style={{color:"lightgray"}}align="right">Status</TableCell>
+            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}}>Time</TableCell>
+            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} align="right">Job ID</TableCell>
+            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="right">Product</TableCell>
+            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="right">Job Title</TableCell>
+            <TableCell className={classes.largeWidthStyle} style={{color:"lightgray"}} align="right">Job Input</TableCell>
+            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="right">By</TableCell>
+            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}align="right">Status</TableCell>
             
           </TableRow>
           
@@ -175,13 +185,14 @@ class App extends Component {
           
           {this.state.items.map((i, index) => (
             // <div className={classes.userRowStyle} key={index}>
-            <TableRow className={classes.table}>
-            <TableCell>{i.startTime}</TableCell>
-            <TableCell ><Typography>{i.jobId}</Typography></TableCell>
-            <TableCell align="right">{i.product}</TableCell>
-            <TableCell align="right">{i.jobTitle}</TableCell>
-            <TableCell align="right">{i.startedBy}</TableCell>
-            <TableCell align="right">{i.status}</TableCell>
+            <TableRow>
+            <TableCell className={classes.mediumWidthStyle} >{i.startTime}</TableCell>
+            <TableCell className={classes.smallWidthStyle} ><Typography>{i.jobId}</Typography></TableCell>
+            <TableCell className={classes.mediumWidthStyle}  align="right">{i.product}</TableCell>
+            <TableCell className={classes.mediumWidthStyle}  align="right">{i.jobTitle}</TableCell>
+            <TableCell className={classes.mediumWidthStyle}  align="right">{i.jobTitle}</TableCell>
+            <TableCell className={classes.mediumWidthStyle}  align="right">{i.startedBy}</TableCell>
+            <TableCell className={classes.smallWidthStyle}  align="right">{i.status}</TableCell>
           </TableRow>
             // </div>
           ))}          
