@@ -18,33 +18,50 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 const useStyles = theme => ({
   table: {
     minWidth: 650,
-    display: "flex"
+    display: "flex",
+    marginleft: "5px",
+    marginRight: "5px" 
   },
   tableContainer: {
     borderRadius: 15,
     margin: '10px 10px'
   },
-  status: {
-     fontWeight: 'bold',
-     fontSize: '0.75rem',
-     color: 'white',
-     backgroundColor: 'grey',
-     borderRadius: 8,
-     padding: '3px 10px',
-     display: 'inline-block'
-  },
+  
+ 
   userRowStyle: {
        color: 'lightgray',
        minWidth: '100%'
   },
   smallWidthStyle:{
-      width: '100px'
+      width: '174px',
+      textAlign: 'right'
   },
   mediumWidthStyle:{
-    width: '150px'
+    width: '200px',
+    textAlign: 'right'
  },
+ mediumWidthStyleNew:{
+  maxWidth: '200px',
+  textAlign: 'right',
+  textOverflow: 'auto'
+},
  largeWidthStyle:{
-  width: '200px'
+  width: '250px',
+  textAlign: 'right'
+},
+jobInputText: {
+  // overflow: 'hidden',
+  // textOverflow: 'ellipsis',
+  // display: '-webkit-box',
+  // webkitLineClamp: '2',
+  // lineClamp: '2',
+  // webkitBoxOrient: 'vertical'
+
+  overflowX: 'scroll',
+    wordWrap: 'break-word',
+    maxHeight: '3.6em',
+    lineHeight: '1.8em',
+    display: 'block'
 }
   
 
@@ -152,23 +169,24 @@ class App extends Component {
     const { classes } = this.props;
     return (
       
-        <TableContainer component={Paper} className={classes.tableContainer}>
+    <TableContainer component={Paper} className={classes.tableContainer}>
       <Table className={classes.table} aria-label="simple table">
         <div>
         <TableHead>
           <TableRow> 
-            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}}>Time</TableCell>
-            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} align="right">Job ID</TableCell>
-            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="right">Product</TableCell>
-            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="right">Job Title</TableCell>
-            <TableCell className={classes.largeWidthStyle} style={{color:"lightgray"}} align="right">Job Input</TableCell>
-            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="right">By</TableCell>
-            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}align="right">Status</TableCell>
+            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Time</TableCell>
+            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >Job ID</TableCell>
+            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} >Product</TableCell>
+            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="left">Job Title</TableCell>
+            <TableCell className={classes.largeWidthStyle} style={{color:"lightgray"}} >Job Input</TableCell>
+            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >By</TableCell>
+            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Status</TableCell>
             
           </TableRow>
           
         </TableHead>
-        </div><div>
+        </div>
+        <div>
         <TableBody>
         
         <InfiniteScroll
@@ -184,17 +202,36 @@ class App extends Component {
         >
           
           {this.state.items.map((i, index) => (
-            // <div className={classes.userRowStyle} key={index}>
+             <div className={classes.userRowStyle} key={index}>
             <TableRow>
-            <TableCell className={classes.mediumWidthStyle} >{i.startTime}</TableCell>
+            <TableCell className={classes.smallWidthStyle} >{(i.startTime).substring(0, 10)}<br /><Typography style={{color: "gray", fontSize: "12px"}}>{(i.startTime).substring(11, 18)}</Typography></TableCell>
             <TableCell className={classes.smallWidthStyle} ><Typography>{i.jobId}</Typography></TableCell>
-            <TableCell className={classes.mediumWidthStyle}  align="right">{i.product}</TableCell>
-            <TableCell className={classes.mediumWidthStyle}  align="right">{i.jobTitle}</TableCell>
-            <TableCell className={classes.mediumWidthStyle}  align="right">{i.jobTitle}</TableCell>
-            <TableCell className={classes.mediumWidthStyle}  align="right">{i.startedBy}</TableCell>
-            <TableCell className={classes.smallWidthStyle}  align="right">{i.status}</TableCell>
+            <TableCell className={classes.smallWidthStyle}  >{i.product}</TableCell>
+            <TableCell className={classes.mediumWidthStyle}  align="left">{i.jobTitle}</TableCell>
+            <TableCell  >
+                <b>UUID:</b> {i.jobInput.UUID}, <br />
+                <b>WalkDirection:</b> {i.jobInput.WalkDirection},<br />
+                <b>Duration:</b>{i.jobInput.Duration},
+                <b>jumpHost:</b>{i.jobInput.jumpHost},
+                <b>Test:</b>{i.jobInput.Test}
+                                                              
+            </TableCell>
+            <TableCell  align="left"  >{i.startedBy}</TableCell>
+            <TableCell style={{fontWeight: 'bold',
+                                fontSize: '0.75rem',
+                                color: (((i.status) === 'Active' && 'yellow')||
+                                      ((i.status) === 'Issues found' && 'red')||
+                                      ((i.status) === 'OK' && 'green')),
+                                borderRadius: 8,
+                                padding: '3px 10px',
+                                display: 'inline-block', 
+                                margin: "20px 5px 20px 100px",
+                                backgroundColor: (((i.status) === 'Active' && '#FFFFC2')||
+                                                  ((i.status) === 'Issues found' && '#fbab8d')||
+                                                  ((i.status) === 'OK' && '#b0d8c8'))
+                              }}  align="left">{i.status}</TableCell>
           </TableRow>
-            // </div>
+            </div>
           ))}          
           
           
