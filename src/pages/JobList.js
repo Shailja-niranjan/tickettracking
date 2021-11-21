@@ -27,8 +27,11 @@ const useStyles = theme => ({
     borderRadius: 15,
     margin: '10px 10px'
   },
-  
- 
+  tableRow: {
+    minWidth: '100%',
+    fontWeight: 'bold',
+    borderBottom: 'solid 1px rgb(221, 221, 221)'
+  }, 
   userRowStyle: {
        color: 'lightgray',
        minWidth: '100%'
@@ -38,16 +41,11 @@ const useStyles = theme => ({
       textAlign: 'right'
   },
   mediumWidthStyle:{
-    width: '200px',
+    width: '280px',
     textAlign: 'right'
  },
- mediumWidthStyleNew:{
-  maxWidth: '200px',
-  textAlign: 'right',
-  textOverflow: 'auto'
-},
  largeWidthStyle:{
-  width: '250px',
+  width: '350px',
   textAlign: 'right'
 },
 jobInputText: {
@@ -227,8 +225,8 @@ class App extends Component {
       <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={this.value} aria-label="basic tabs example">
-                <Tab label="Item One" {...a11yProps(0)} />
-                <Tab label="Item Two" {...a11yProps(1)} />
+                <Tab label="My jobs" {...a11yProps(0)} />
+                <Tab label="All Jobs" {...a11yProps(1)} />
               
               </Tabs>
             </Box>
@@ -237,6 +235,7 @@ class App extends Component {
               <Table className={classes.table} aria-label="simple table">
                 <div>
                 <TableHead>
+                  
                   <TableRow> 
                     <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Time</TableCell>
                     <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >Job ID</TableCell>
@@ -267,34 +266,40 @@ class App extends Component {
                   
                   {this.state.items.map((i, index) => (
                     <div className={classes.userRowStyle} key={index}>
+                      <thead style={{borderBottomWidth: "1px", borderBottomStyle: "solid"}}>
                     <TableRow>
                     <TableCell className={classes.smallWidthStyle} >{(i.startTime).substring(0, 10)}<br /><Typography style={{color: "gray", fontSize: "12px"}}>{(i.startTime).substring(11, 18)}</Typography></TableCell>
                     <TableCell className={classes.smallWidthStyle} ><Typography>{i.jobId}</Typography></TableCell>
-                    <TableCell className={classes.smallWidthStyle}  >{i.product}</TableCell>
+                    <TableCell className={classes.mediumWidthStyle} align="left" >{i.product}</TableCell>
                     <TableCell className={classes.mediumWidthStyle}  align="left">{i.jobTitle}</TableCell>
-                    <TableCell  >
-                        <b>UUID:</b> {i.jobInput.UUID}, <br />
-                        <b>WalkDirection:</b> {i.jobInput.WalkDirection},<br />
-                        <b>Duration:</b>{i.jobInput.Duration},
+                    <TableCell  className={classes.largeWidthStyle} >
+                      <div style={{ display: 'block',  wordWrap: 'reak-word', overflowY: 'hidden', overflowX: 'scroll', maxHeight: '5em', lineHeight: '1.8em'}}>
+                        <b>UUID:</b> {i.jobInput.UUID}, 
+                        <b>WalkDirection:</b> {i.jobInput.WalkDirection},
+                        <b> Duration:</b>{i.jobInput.Duration},
                         <b>jumpHost:</b>{i.jobInput.jumpHost},
                         <b>Test:</b>{i.jobInput.Test}
-                                                                      
+                      </div>                                            
                     </TableCell>
-                    <TableCell  align="left"  >{i.startedBy}</TableCell>
-                    <TableCell style={{fontWeight: 'bold',
+                    <TableCell  className={classes.smallWidthStyle} align="left"  >{i.startedBy}</TableCell>
+                    <TableCell className={classes.smallWidthStyle} >
+                      <div style={{fontWeight: 'bold',
                                         fontSize: '0.75rem',
-                                        color: (((i.status) === 'Active' && 'yellow')||
+                                        color: (((i.status) === 'Active' && '#FFA700')||
                                               ((i.status) === 'Issues found' && 'red')||
                                               ((i.status) === 'OK' && 'green')),
                                         borderRadius: 8,
                                         padding: '3px 10px',
                                         display: 'inline-block', 
-                                        margin: "20px 5px 20px 100px",
+                                        margin: "20px 5px 20px 0px",
                                         backgroundColor: (((i.status) === 'Active' && '#FFFFC2')||
                                                           ((i.status) === 'Issues found' && '#fbab8d')||
                                                           ((i.status) === 'OK' && '#b0d8c8'))
-                                      }}  align="left">{i.status}</TableCell>
+                                      }}  align="left">{i.status}
+                      </div>
+                      </TableCell>
                   </TableRow>
+                  </thead>
                     </div>
                   ))}          
                   
