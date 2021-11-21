@@ -226,13 +226,13 @@ class App extends Component {
     return (
       <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={this.value} onChange={changeValue} aria-label="basic tabs example">
+              <Tabs value={this.value} aria-label="basic tabs example">
                 <Tab label="Item One" {...a11yProps(0)} />
                 <Tab label="Item Two" {...a11yProps(1)} />
               
               </Tabs>
             </Box>
-            <TabPanel value={this.value} index={0}>  
+            <TabPanel value={0} index={0}>  
             <TableContainer component={Paper} className={classes.tableContainer}>
               <Table className={classes.table} aria-label="simple table">
                 <div>
