@@ -46,7 +46,9 @@ const useStyles = theme => ({
  },
  largeWidthStyle:{
   width: '350px',
-  textAlign: 'right'
+  maxWidth: '350px',
+  textAlign: 'right',
+  overflowX: 'auto'
 },
 jobInputText: {
   // overflow: 'hidden',
@@ -225,7 +227,7 @@ class App extends Component {
       <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={this.value} aria-label="basic tabs example">
-                <Tab label="My jobs" {...a11yProps(0)} />
+                <Tab label="My jobs" style={{borderWidth:1}} {...a11yProps(0)} />
                 <Tab label="All Jobs" {...a11yProps(1)} />
               
               </Tabs>
@@ -273,7 +275,7 @@ class App extends Component {
                     <TableCell className={classes.mediumWidthStyle} align="left" >{i.product}</TableCell>
                     <TableCell className={classes.mediumWidthStyle}  align="left">{i.jobTitle}</TableCell>
                     <TableCell  className={classes.largeWidthStyle} >
-                      <div style={{ display: 'block',  wordWrap: 'reak-word', overflowY: 'hidden', overflowX: 'scroll', maxHeight: '5em', lineHeight: '1.8em'}}>
+                      <div style={{ width: '400px', display: 'block',  wordWrap: 'reak-word', overflowY: 'hidden', overflowX: 'auto', maxHeight: '5em', lineHeight: '1.8em'}}>
                         <b>UUID:</b> {i.jobInput.UUID}, 
                         <b>WalkDirection:</b> {i.jobInput.WalkDirection},
                         <b> Duration:</b>{i.jobInput.Duration},
