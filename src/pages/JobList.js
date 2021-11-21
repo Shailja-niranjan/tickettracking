@@ -1,5 +1,4 @@
 import React , {Component} from 'react';
-// import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,10 +8,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { withStyles } from '@material-ui/core/styles';
-// import { styled} from '@mui/material/styles';
-// import { withStyles } from '@mui/styles';
 import Typography from '@material-ui/core/Typography';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 
 const useStyles = theme => ({
@@ -74,6 +75,44 @@ const style = {
   margin: 6,
   padding: 8
 };
+
+// Materialized Tabs code started
+ 
+function TabPanel(props) {
+  const { children, value, index } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+       >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+// Materiazed tab code function ended
+
+
 
 const tempJobList = [
   {
@@ -141,7 +180,18 @@ const classes = useStyles;
 // interface Props extends makeStyles<typeof styles>{ }
 class App extends Component {
 
-  // const { classes } = this.props;
+  _renderValue = () => () => {
+    const [value, setValue] = React.useState(0);
+
+    // return <div>{ value }</div>
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+  }
+
+  
+
+  
   
 
   
@@ -167,82 +217,100 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
-    return (
-      
-    <TableContainer component={Paper} className={classes.tableContainer}>
-      <Table className={classes.table} aria-label="simple table">
-        <div>
-        <TableHead>
-          <TableRow> 
-            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Time</TableCell>
-            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >Job ID</TableCell>
-            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} >Product</TableCell>
-            <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="left">Job Title</TableCell>
-            <TableCell className={classes.largeWidthStyle} style={{color:"lightgray"}} >Job Input</TableCell>
-            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >By</TableCell>
-            <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Status</TableCell>
-            
-          </TableRow>
-          
-        </TableHead>
-        </div>
-        <div>
-        <TableBody>
-        
-        <InfiniteScroll
-          dataLength={this.state.items.length}
-          next={this.fetchMoreData}
-          hasMore={this.state.hasMore}
-          loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: "center" , width: "1200px"}}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
-          
-          {this.state.items.map((i, index) => (
-             <div className={classes.userRowStyle} key={index}>
-            <TableRow>
-            <TableCell className={classes.smallWidthStyle} >{(i.startTime).substring(0, 10)}<br /><Typography style={{color: "gray", fontSize: "12px"}}>{(i.startTime).substring(11, 18)}</Typography></TableCell>
-            <TableCell className={classes.smallWidthStyle} ><Typography>{i.jobId}</Typography></TableCell>
-            <TableCell className={classes.smallWidthStyle}  >{i.product}</TableCell>
-            <TableCell className={classes.mediumWidthStyle}  align="left">{i.jobTitle}</TableCell>
-            <TableCell  >
-                <b>UUID:</b> {i.jobInput.UUID}, <br />
-                <b>WalkDirection:</b> {i.jobInput.WalkDirection},<br />
-                <b>Duration:</b>{i.jobInput.Duration},
-                <b>jumpHost:</b>{i.jobInput.jumpHost},
-                <b>Test:</b>{i.jobInput.Test}
-                                                              
-            </TableCell>
-            <TableCell  align="left"  >{i.startedBy}</TableCell>
-            <TableCell style={{fontWeight: 'bold',
-                                fontSize: '0.75rem',
-                                color: (((i.status) === 'Active' && 'yellow')||
-                                      ((i.status) === 'Issues found' && 'red')||
-                                      ((i.status) === 'OK' && 'green')),
-                                borderRadius: 8,
-                                padding: '3px 10px',
-                                display: 'inline-block', 
-                                margin: "20px 5px 20px 100px",
-                                backgroundColor: (((i.status) === 'Active' && '#FFFFC2')||
-                                                  ((i.status) === 'Issues found' && '#fbab8d')||
-                                                  ((i.status) === 'OK' && '#b0d8c8'))
-                              }}  align="left">{i.status}</TableCell>
-          </TableRow>
-            </div>
-          ))}          
-          
-          
-        
 
-        </InfiniteScroll>
-        </TableBody>
-        </div>
-      </Table>
-    </TableContainer>
-      
+    const changeValue = this._renderValue();
+  
+  
+
+
+    return (
+      <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs value={this.value} onChange={changeValue} aria-label="basic tabs example">
+                <Tab label="Item One" {...a11yProps(0)} />
+                <Tab label="Item Two" {...a11yProps(1)} />
+              
+              </Tabs>
+            </Box>
+            <TabPanel value={this.value} index={0}>  
+            <TableContainer component={Paper} className={classes.tableContainer}>
+              <Table className={classes.table} aria-label="simple table">
+                <div>
+                <TableHead>
+                  <TableRow> 
+                    <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Time</TableCell>
+                    <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >Job ID</TableCell>
+                    <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} >Product</TableCell>
+                    <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="left">Job Title</TableCell>
+                    <TableCell className={classes.largeWidthStyle} style={{color:"lightgray"}} >Job Input</TableCell>
+                    <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >By</TableCell>
+                    <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Status</TableCell>
+                    
+                  </TableRow>
+                  
+                </TableHead>
+                </div>
+                <div>
+                <TableBody>
+                
+                <InfiniteScroll
+                  dataLength={this.state.items.length}
+                  next={this.fetchMoreData}
+                  hasMore={this.state.hasMore}
+                  loader={<h4>Loading...</h4>}
+                  endMessage={
+                    <p style={{ textAlign: "center" , width: "1200px"}}>
+                      <b>Yay! You have seen it all</b>
+                    </p>
+                  }
+                >
+                  
+                  {this.state.items.map((i, index) => (
+                    <div className={classes.userRowStyle} key={index}>
+                    <TableRow>
+                    <TableCell className={classes.smallWidthStyle} >{(i.startTime).substring(0, 10)}<br /><Typography style={{color: "gray", fontSize: "12px"}}>{(i.startTime).substring(11, 18)}</Typography></TableCell>
+                    <TableCell className={classes.smallWidthStyle} ><Typography>{i.jobId}</Typography></TableCell>
+                    <TableCell className={classes.smallWidthStyle}  >{i.product}</TableCell>
+                    <TableCell className={classes.mediumWidthStyle}  align="left">{i.jobTitle}</TableCell>
+                    <TableCell  >
+                        <b>UUID:</b> {i.jobInput.UUID}, <br />
+                        <b>WalkDirection:</b> {i.jobInput.WalkDirection},<br />
+                        <b>Duration:</b>{i.jobInput.Duration},
+                        <b>jumpHost:</b>{i.jobInput.jumpHost},
+                        <b>Test:</b>{i.jobInput.Test}
+                                                                      
+                    </TableCell>
+                    <TableCell  align="left"  >{i.startedBy}</TableCell>
+                    <TableCell style={{fontWeight: 'bold',
+                                        fontSize: '0.75rem',
+                                        color: (((i.status) === 'Active' && 'yellow')||
+                                              ((i.status) === 'Issues found' && 'red')||
+                                              ((i.status) === 'OK' && 'green')),
+                                        borderRadius: 8,
+                                        padding: '3px 10px',
+                                        display: 'inline-block', 
+                                        margin: "20px 5px 20px 100px",
+                                        backgroundColor: (((i.status) === 'Active' && '#FFFFC2')||
+                                                          ((i.status) === 'Issues found' && '#fbab8d')||
+                                                          ((i.status) === 'OK' && '#b0d8c8'))
+                                      }}  align="left">{i.status}</TableCell>
+                  </TableRow>
+                    </div>
+                  ))}          
+                  
+                  
+                
+
+                </InfiniteScroll>
+                </TableBody>
+                </div>
+              </Table>
+            </TableContainer>
+            </TabPanel>
+            <TabPanel value={this.value} index={1}>
+              Item Two
+            </TabPanel>
+            </Box> 
     );
   }
 }
