@@ -14,7 +14,18 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import StartJob from '../pages/startjobs.js';
 
+const ProductValue = () => {
+  const data = "Equinix Fabric";
+  // console.log("value inside Product Value const")
+      return(
+          
+          <div>
+            <StartJob data={data}/>
+          </div>
+      );
+  }
 
 const useStyles = theme => ({
   table: {
@@ -126,7 +137,7 @@ const tempJobList = [
           WalkDirection: 'A-Z',
           Duration: '20 sec',
           jumpHost: 'test',
-          Test: 'test'
+          Test: 'test i am testing the no of rows and max width of the column'
       },
       startedBy: 'Sushil K Madwani',
       userId: 'smadwani',
@@ -215,22 +226,27 @@ class App extends Component {
     }, 500);
   };
 
+  
+
   render() {
     const { classes } = this.props;
 
     const changeValue = this._renderValue();
   
-  
-
-
+   
+        
+    
     return (
+      
       <Box sx={{ width: '100%' }}>
+         <button onClick={ProductValue}>Start Job</button>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={this.value} aria-label="basic tabs example">
                 <Tab label="My jobs" style={{borderWidth:1}} {...a11yProps(0)} />
                 <Tab label="All Jobs" {...a11yProps(1)} />
               
               </Tabs>
+              < ProductValue/>
             </Box>
             <TabPanel value={0} index={0}>  
             <TableContainer component={Paper} className={classes.tableContainer}>
@@ -275,7 +291,7 @@ class App extends Component {
                     <TableCell className={classes.mediumWidthStyle} align="left" >{i.product}</TableCell>
                     <TableCell className={classes.mediumWidthStyle}  align="left">{i.jobTitle}</TableCell>
                     <TableCell  className={classes.largeWidthStyle} >
-                      <div style={{ width: '400px', display: 'block',  wordWrap: 'reak-word', overflowY: 'hidden', overflowX: 'auto', maxHeight: '5em', lineHeight: '1.8em'}}>
+                      <div style={{ width: '400px', maxWidth: '500px', display: 'block',  wordWrap: 'reak-word', overflowY: 'hidden', overflowX: 'auto', maxHeight: '5em', lineHeight: '1.8em'}}>
                         <b>UUID:</b> {i.jobInput.UUID}, 
                         <b>WalkDirection:</b> {i.jobInput.WalkDirection},
                         <b> Duration:</b>{i.jobInput.Duration},

@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import MyJobs from './pages/Myjobs'
 import JobList from './pages/JobList'
+import StartjobDrawer from './pages/startjobs'
+
 
 
 
@@ -18,6 +20,9 @@ function App() {
         </Route>
         <Route exact path="/JobList">
           <JobList />
+        </Route>
+        <Route exact path="/startjobs">
+          <StartjobDrawer />
         </Route>
       </Switch>
     </Router>
