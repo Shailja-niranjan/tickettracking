@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React, { Component, useState, setState } from 'react';
 import { render } from 'react-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,24 +15,27 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import StartJob from '../pages/startjobs.js';
+import Drawer from '@mui/material/Drawer';
 
 const ProductValue = () => {
   const data = "Equinix Fabric";
   // console.log("value inside Product Value const")
-      return(
-          
-          <div>
-            <StartJob data={data}/>
-          </div>
-      );
-  }
+  return (
+
+    <div>
+      <StartJob data={data} />
+    </div>
+  );
+}
+
+
 
 const useStyles = theme => ({
   table: {
     minWidth: 650,
     display: "flex",
     marginleft: "5px",
-    marginRight: "5px" 
+    marginRight: "5px"
   },
   tableContainer: {
     borderRadius: 15,
@@ -42,40 +45,40 @@ const useStyles = theme => ({
     minWidth: '100%',
     fontWeight: 'bold',
     borderBottom: 'solid 1px rgb(221, 221, 221)'
-  }, 
+  },
   userRowStyle: {
-       color: 'lightgray',
-       minWidth: '100%'
+    color: 'lightgray',
+    minWidth: '100%'
   },
-  smallWidthStyle:{
-      width: '174px',
-      textAlign: 'right'
+  smallWidthStyle: {
+    width: '174px',
+    textAlign: 'right'
   },
-  mediumWidthStyle:{
+  mediumWidthStyle: {
     width: '280px',
     textAlign: 'right'
- },
- largeWidthStyle:{
-  width: '350px',
-  maxWidth: '350px',
-  textAlign: 'right',
-  overflowX: 'auto'
-},
-jobInputText: {
-  // overflow: 'hidden',
-  // textOverflow: 'ellipsis',
-  // display: '-webkit-box',
-  // webkitLineClamp: '2',
-  // lineClamp: '2',
-  // webkitBoxOrient: 'vertical'
+  },
+  largeWidthStyle: {
+    width: '350px',
+    maxWidth: '350px',
+    textAlign: 'right',
+    overflowX: 'auto'
+  },
+  jobInputText: {
+    // overflow: 'hidden',
+    // textOverflow: 'ellipsis',
+    // display: '-webkit-box',
+    // webkitLineClamp: '2',
+    // lineClamp: '2',
+    // webkitBoxOrient: 'vertical'
 
-  overflowX: 'scroll',
+    overflowX: 'scroll',
     wordWrap: 'break-word',
     maxHeight: '3.6em',
     lineHeight: '1.8em',
     display: 'block'
-}
-  
+  }
+
 
 });
 
@@ -88,7 +91,7 @@ const style = {
 };
 
 // Materialized Tabs code started
- 
+
 function TabPanel(props) {
   const { children, value, index } = props;
 
@@ -98,7 +101,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-       >
+    >
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -127,92 +130,93 @@ function a11yProps(index) {
 
 const tempJobList = [
   {
-      startTime: '09/08/2021 9:14 AM',
-      jobId: 4453,
-      clusterName: 'emea-us',
-      product: 'Equinix Fabric',
-      jobTitle: 'Fabric VC Sanity Check',
-      jobInput: {
-          UUID: 'jkfsdahf-gjfhd763-jhfkj8834sj',
-          WalkDirection: 'A-Z',
-          Duration: '20 sec',
-          jumpHost: 'test',
-          Test: 'test i am testing the no of rows and max width of the column'
-      },
-      startedBy: 'Sushil K Madwani',
-      userId: 'smadwani',
-      status: 'Issues found'
+    startTime: '09/08/2021 9:14 AM',
+    jobId: 4453,
+    clusterName: 'emea-us',
+    product: 'Equinix Fabric',
+    jobTitle: 'Fabric VC Sanity Check',
+    jobInput: {
+      UUID: 'jkfsdahf-gjfhd763-jhfkj8834sj',
+      WalkDirection: 'A-Z',
+      Duration: '20 sec',
+      jumpHost: 'test',
+      Test: 'test i am testing the no of rows and max width of the column'
+    },
+    startedBy: 'Sushil K Madwani',
+    userId: 'smadwani',
+    status: 'Issues found'
   },
   {
-      startTime: '09/08/2021 9:14 AM',
-      jobId: 4453,
-      clusterName: 'na-us',
-      product: 'Equinix Fabric',
-      jobTitle: 'Fabric VC Sanity Check',
-      jobInput: {
-          UUID: 'jkfsdahf-gjfhd763-jhfkj8834sj',
-          WalkDirection: 'A-Z',
-          Duration: '20 sec',
-          jumpHost: 'test',
-          Test: 'test'
-      },
-      startedBy: 'Sushil K Madwani',
-      userId: 'smadwani',
-      status: 'Active'
+    startTime: '09/08/2021 9:14 AM',
+    jobId: 4453,
+    clusterName: 'na-us',
+    product: 'Equinix Fabric',
+    jobTitle: 'Fabric VC Sanity Check',
+    jobInput: {
+      UUID: 'jkfsdahf-gjfhd763-jhfkj8834sj',
+      WalkDirection: 'A-Z',
+      Duration: '20 sec',
+      jumpHost: 'test',
+      Test: 'test'
+    },
+    startedBy: 'Sushil K Madwani',
+    userId: 'smadwani',
+    status: 'Active'
   },
   {
-      startTime: '09/08/2021 9:14 AM',
-      jobId: 4453,
-      clusterName: 'na-us',
-      product: 'Equinix Fabric',
-      jobTitle: 'Fabric VC Sanity Check',
-      jobInput: {
-          UUID: 'jkfsdahf-gjfhd763-jhfkj8834sj',
-          WalkDirection: 'A-Z',
-          Duration: '20 sec',
-          jumpHost: 'test',
-          Test: 'test'
-      },
-      startedBy: 'Sushil K Madwani',
-      userId: 'smadwani',
-      status: 'OK'
+    startTime: '09/08/2021 9:14 AM',
+    jobId: 4453,
+    clusterName: 'na-us',
+    product: 'Equinix Fabric',
+    jobTitle: 'Fabric VC Sanity Check',
+    jobInput: {
+      UUID: 'jkfsdahf-gjfhd763-jhfkj8834sj',
+      WalkDirection: 'A-Z',
+      Duration: '20 sec',
+      jumpHost: 'test',
+      Test: 'test'
+    },
+    startedBy: 'Sushil K Madwani',
+    userId: 'smadwani',
+    status: 'OK'
   }
 ]
 
 let JobList = []
 
-for(let j=0; j<500; j++){
+for (let j = 0; j < 500; j++) {
 
-  {Object.keys(tempJobList).map(item => ( JobList.push(tempJobList[item])))}
+  { Object.keys(tempJobList).map(item => (JobList.push(tempJobList[item]))) }
 }
 
 const classes = useStyles;
-// const classes = useStyle();
-// interface Props extends makeStyles<typeof styles>{ }
-class App extends Component {
 
-  _renderValue = () => () => {
-    const [value, setValue] = React.useState(0);
 
-    // return <div>{ value }</div>
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
-    };
+export default function App() {
+
+
+  const [items, setJobList] = useState([]);
+  const [hasMore, setHasMore] = useState(false);
+  const [start, setStart] = useState(false);
+  const [anchor, setAnchor] = useState(false);
+  const [value, setvalue] = useState("test");
+  const[isDrawerOpened, toggleDrawerState] = useState(false)
+
+  
+  
+
+  // toggleDrawerState = () => {
+  //   isDrawerOpened: true,
+  // };
+
+  for (let j = 0; j < 500; j++) {
+
+    { Object.keys(tempJobList).map(item => (items.push(tempJobList[item]))) }
   }
 
-  
 
-  
-  
 
-  
-  state = {
-    // items: Array.from({ length: 20 }),
-    items: JobList,
-    hasMore: true
-  };
-
-  fetchMoreData = () => {
+  const fetchMoreData = () => {
     if (this.state.items.length >= 500) {
       this.setState({ hasMore: false });
       return;
@@ -226,120 +230,125 @@ class App extends Component {
     }, 500);
   };
 
-  
 
-  render() {
-    const { classes } = this.props;
 
-    const changeValue = this._renderValue();
-  
-   
+
+
+
+
+  return (
+
+    <Box sx={{ width: '100%' }}>
+      <button onClick={() => toggleDrawerState(true)}>Start Job</button>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} aria-label="basic tabs example">
+          <Tab label="My jobs" style={{ borderWidth: 1 }} {...a11yProps(0)} />
+          <Tab label="All Jobs" {...a11yProps(1)} />
+
+        </Tabs>
+        <div>
+        <Drawer
+          variant="temporary"
+          open={isDrawerOpened}
+          // onClose={closeDrawer}
+        >
+          < ProductValue />
+          </Drawer>
+          </div>
         
-    
-    return (
-      
-      <Box sx={{ width: '100%' }}>
-         <button onClick={ProductValue}>Start Job</button>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={this.value} aria-label="basic tabs example">
-                <Tab label="My jobs" style={{borderWidth:1}} {...a11yProps(0)} />
-                <Tab label="All Jobs" {...a11yProps(1)} />
-              
-              </Tabs>
-              < ProductValue/>
-            </Box>
-            <TabPanel value={0} index={0}>  
-            <TableContainer component={Paper} className={classes.tableContainer}>
-              <Table className={classes.table} aria-label="simple table">
-                <div>
-                <TableHead>
-                  
-                  <TableRow> 
-                    <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Time</TableCell>
-                    <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >Job ID</TableCell>
-                    <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} >Product</TableCell>
-                    <TableCell className={classes.mediumWidthStyle} style={{color:"lightgray"}} align="left">Job Title</TableCell>
-                    <TableCell className={classes.largeWidthStyle} style={{color:"lightgray"}} >Job Input</TableCell>
-                    <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}} >By</TableCell>
-                    <TableCell className={classes.smallWidthStyle} style={{color:"lightgray"}}>Status</TableCell>
-                    
-                  </TableRow>
-                  
-                </TableHead>
-                </div>
-                <div>
-                <TableBody>
-                
+      </Box>
+      <TabPanel value={0} index={0}>
+        <TableContainer component={Paper} className={classes.tableContainer}>
+          <Table className={classes.table} aria-label="simple table">
+            <div>
+              <TableHead>
+
+                <TableRow>
+                  <TableCell className={classes.smallWidthStyle} style={{ color: "lightgray" }}>Time</TableCell>
+                  <TableCell className={classes.smallWidthStyle} style={{ color: "lightgray" }} >Job ID</TableCell>
+                  <TableCell className={classes.mediumWidthStyle} style={{ color: "lightgray" }} >Product</TableCell>
+                  <TableCell className={classes.mediumWidthStyle} style={{ color: "lightgray" }} align="left">Job Title</TableCell>
+                  <TableCell className={classes.largeWidthStyle} style={{ color: "lightgray" }} >Job Input</TableCell>
+                  <TableCell className={classes.smallWidthStyle} style={{ color: "lightgray" }} >By</TableCell>
+                  <TableCell className={classes.smallWidthStyle} style={{ color: "lightgray" }}>Status</TableCell>
+
+                </TableRow>
+
+              </TableHead>
+            </div>
+            <div>
+              <TableBody>
+
                 <InfiniteScroll
-                  dataLength={this.state.items.length}
-                  next={this.fetchMoreData}
-                  hasMore={this.state.hasMore}
+                  dataLength={items.length}
+                  next={fetchMoreData}
+                  hasMore={hasMore}
                   loader={<h4>Loading...</h4>}
                   endMessage={
-                    <p style={{ textAlign: "center" , width: "1200px"}}>
+                    <p style={{ textAlign: "center", width: "1200px" }}>
                       <b>Yay! You have seen it all</b>
                     </p>
                   }
                 >
-                  
-                  {this.state.items.map((i, index) => (
+
+                  {items.map((i, index) => (
                     <div className={classes.userRowStyle} key={index}>
-                      <thead style={{borderBottomWidth: "1px", borderBottomStyle: "solid"}}>
-                    <TableRow>
-                    <TableCell className={classes.smallWidthStyle} >{(i.startTime).substring(0, 10)}<br /><Typography style={{color: "gray", fontSize: "12px"}}>{(i.startTime).substring(11, 18)}</Typography></TableCell>
-                    <TableCell className={classes.smallWidthStyle} ><Typography>{i.jobId}</Typography></TableCell>
-                    <TableCell className={classes.mediumWidthStyle} align="left" >{i.product}</TableCell>
-                    <TableCell className={classes.mediumWidthStyle}  align="left">{i.jobTitle}</TableCell>
-                    <TableCell  className={classes.largeWidthStyle} >
-                      <div style={{ width: '400px', maxWidth: '500px', display: 'block',  wordWrap: 'reak-word', overflowY: 'hidden', overflowX: 'auto', maxHeight: '5em', lineHeight: '1.8em'}}>
-                        <b>UUID:</b> {i.jobInput.UUID}, 
-                        <b>WalkDirection:</b> {i.jobInput.WalkDirection},
-                        <b> Duration:</b>{i.jobInput.Duration},
-                        <b>jumpHost:</b>{i.jobInput.jumpHost},
-                        <b>Test:</b>{i.jobInput.Test}
-                      </div>                                            
-                    </TableCell>
-                    <TableCell  className={classes.smallWidthStyle} align="left"  >{i.startedBy}</TableCell>
-                    <TableCell className={classes.smallWidthStyle} >
-                      <div style={{fontWeight: 'bold',
-                                        fontSize: '0.75rem',
-                                        color: (((i.status) === 'Active' && '#FFA700')||
-                                              ((i.status) === 'Issues found' && 'red')||
-                                              ((i.status) === 'OK' && 'green')),
-                                        borderRadius: 8,
-                                        padding: '3px 10px',
-                                        display: 'inline-block', 
-                                        margin: "20px 5px 20px 0px",
-                                        backgroundColor: (((i.status) === 'Active' && '#FFFFC2')||
-                                                          ((i.status) === 'Issues found' && '#fbab8d')||
-                                                          ((i.status) === 'OK' && '#b0d8c8'))
-                                      }}  align="left">{i.status}
-                      </div>
-                      </TableCell>
-                  </TableRow>
-                  </thead>
+                      <thead style={{ borderBottomWidth: "1px", borderBottomStyle: "solid" }}>
+                        <TableRow>
+                          <TableCell className={classes.smallWidthStyle} >{(i["startTime"]).substring(0, 10)}<br /><Typography style={{ color: "gray", fontSize: "12px" }}>{(i.startTime).substring(11, 18)}</Typography></TableCell>
+                          <TableCell className={classes.smallWidthStyle} ><Typography>{i.jobId}</Typography></TableCell>
+                          <TableCell className={classes.mediumWidthStyle} align="left" >{i.product}</TableCell>
+                          <TableCell className={classes.mediumWidthStyle} align="left">{i.jobTitle}</TableCell>
+                          <TableCell className={classes.largeWidthStyle} >
+                            <div style={{ width: '400px', maxWidth: '500px', display: 'block', wordWrap: 'reak-word', overflowY: 'hidden', overflowX: 'auto', maxHeight: '5em', lineHeight: '1.8em' }}>
+                              <b>UUID:</b> {i.jobInput.UUID},
+                              <b>WalkDirection:</b> {i.jobInput.WalkDirection},
+                              <b> Duration:</b>{i.jobInput.Duration},
+                              <b>jumpHost:</b>{i.jobInput.jumpHost},
+                              <b>Test:</b>{i.jobInput.Test}
+                            </div>
+                          </TableCell>
+                          <TableCell className={classes.smallWidthStyle} align="left"  >{i.startedBy}</TableCell>
+                          <TableCell className={classes.smallWidthStyle} >
+                            <div style={{
+                              fontWeight: 'bold',
+                              fontSize: '0.75rem',
+                              color: (((i.status) === 'Active' && '#FFA700') ||
+                                ((i.status) === 'Issues found' && 'red') ||
+                                ((i.status) === 'OK' && 'green')),
+                              borderRadius: 8,
+                              padding: '3px 10px',
+                              display: 'inline-block',
+                              margin: "20px 5px 20px 0px",
+                              backgroundColor: (((i.status) === 'Active' && '#FFFFC2') ||
+                                ((i.status) === 'Issues found' && '#fbab8d') ||
+                                ((i.status) === 'OK' && '#b0d8c8'))
+                            }} align="left">{i.status}
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      </thead>
                     </div>
-                  ))}          
-                  
-                  
-                
+                  ))}
+
+
+
 
                 </InfiniteScroll>
-                </TableBody>
-                </div>
-              </Table>
-            </TableContainer>
-            </TabPanel>
-            <TabPanel value={this.value} index={1}>
-              Item Two
-            </TabPanel>
-            </Box> 
-    );
-  }
+              </TableBody>
+            </div>
+          </Table>
+        </TableContainer>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
+    </Box>
+  );
+  // }
 }
 
 
 
 
-export default withStyles(useStyles)(App);
 
