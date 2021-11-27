@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PropTypes from 'prop-types';
@@ -20,6 +20,7 @@ import Drawer from '@mui/material/Drawer';
 const ProductValue = () => {
   const data = "Equinix Fabric";
   // console.log("value inside Product Value const")
+
   return (
 
     <div>
@@ -30,7 +31,8 @@ const ProductValue = () => {
 
 
 
-const useStyles = theme => ({
+
+  const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 650,
     display: "flex",
@@ -80,7 +82,7 @@ const useStyles = theme => ({
   }
 
 
-});
+}))
 
 
 const style = {
@@ -189,27 +191,29 @@ for (let j = 0; j < 500; j++) {
   { Object.keys(tempJobList).map(item => (JobList.push(tempJobList[item]))) }
 }
 
-const classes = useStyles;
+// const classes = useStyles;
 
 
-export default function App() {
+// function JobListing() {
+  const JobListing = () =>{
 
-
+  
+  const classes = useStyles();
   const [items, setJobList] = useState([]);
   const [hasMore, setHasMore] = useState(false);
   const [start, setStart] = useState(false);
   const [anchor, setAnchor] = useState(false);
   const [value, setvalue] = useState("test");
-  const[isDrawerOpened, toggleDrawerState] = useState(false)
+  const [isDrawerOpened, toggleDrawerState] = useState(false)
 
-  
-  
+
+
 
   // toggleDrawerState = () => {
   //   isDrawerOpened: true,
   // };
 
-  for (let j = 0; j < 500; j++) {
+  for (let j = 0; j < 170; j++) {
 
     { Object.keys(tempJobList).map(item => (items.push(tempJobList[item]))) }
   }
@@ -247,15 +251,15 @@ export default function App() {
 
         </Tabs>
         <div>
-        <Drawer
-          variant="temporary"
-          open={isDrawerOpened}
-          // onClose={closeDrawer}
-        >
-          < ProductValue />
+          <Drawer
+            transitionDuration={{ enter: 100, exit: 200 }}
+            anchor="left"
+            open={isDrawerOpened}
+          >
+            < ProductValue />
           </Drawer>
-          </div>
-        
+        </div>
+
       </Box>
       <TabPanel value={0} index={0}>
         <TableContainer component={Paper} className={classes.tableContainer}>
@@ -347,6 +351,8 @@ export default function App() {
   );
   // }
 }
+
+export default withStyles(useStyles)(JobListing)
 
 
 
