@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Formik, Field } from "formik";
-import { Form, Input, Title, Text, Button, Select } from "./theme.js";
+import { Formik, Field, Form , ErrorMessage } from "formik";
+import { Input, Title, Text, Button, Select } from "./theme.js";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import * as Yup from 'yup';
 
 const Label = styled.label`
   display: flex;
@@ -15,30 +16,30 @@ const Label = styled.label`
   position: relative;
 `;
 
+function validateUuid(value) {
+    let error;
+    if (value === '') {
+      error = 'Please enter uuid value';
+    }
+    return error;
+  }
 
 export default function StartJob() {
-
+   
     return (
         <div>
-            <h3 style={{ marginLeft: "30px" }}>Strat a New Job</h3>
+            <h3 style={{ marginLeft: "5px" }}>Start a New Job</h3>
             {/* FORMIK */}
             <Formik
-                initialValues={{ job: "", uuid: "" }}
-                validate={values => {
+                initialValues={{
+                    uuid: '',
+                  }}
+                  onSubmit={values => {
+                    // same shape as initial values
                     console.log(values);
-                }}
-                onSubmit={values => {
-                    console.log(values);
-                }}
-                render={({
-                    touched,
-                    errors,
-                    values,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit
-                }) => (
-                    <Form onSubmit={handleSubmit} style={{ marginLeft: "30px" }}>
+                  }}>
+                {({ errors, touched, isValidating }) => (
+                    <Form  style={{ marginLeft: "5px",width: "300px", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
                         <Label>
                             Product Name
@@ -60,12 +61,13 @@ export default function StartJob() {
                         </Label>
                         <Label>
                             UUID*
-                            {errors.uuid && <Text color="red">{errors.uuid}</Text>}
-                            <Input
+                            
+                            <Field validate={validateUuid}
                                 border={errors.uuid && "1px solid red"}
                                 name="uuid"
                                 placeholder="UUID"
                             />
+                            {errors.uuid && touched.uuid && <div>{errors.uuid}</div>}
                         </Label>
                         <Label>
                             Packet Path Direction
@@ -75,7 +77,7 @@ export default function StartJob() {
                             </Select>
 
                         </Label>
-                        <div style={{ float: "left" ,width: "300px"}}><FormControlLabel control={<Checkbox />} label="Include Stat" style={{ float: "left" }} /></div>
+                        <div style={{ float: "left" ,width: "280px"}}><FormControlLabel control={<Checkbox />} label="Include Stat" style={{ float: "left" }} /></div>
                         <Label>
                             <div>
                                 <div style={{ float: "left" }}>
@@ -84,7 +86,7 @@ export default function StartJob() {
                                         <Input
                                             type="text"
                                             name="duration"
-                                            style={{ width: "130px", height: "35px" }}
+                                            style={{ width: "120px", height: "35px" }}
                                         />
                                     </Label>
                                 </div>
@@ -97,7 +99,7 @@ export default function StartJob() {
                                         <Input
                                             type="text"
                                             name="iteration"
-                                            style={{ width: "130px", height: "35px" }}
+                                            style={{ width: "120px", height: "35px" }}
                                         />
                                     </Label>
                                 </div>
@@ -107,7 +109,7 @@ export default function StartJob() {
                         <Button type="submit" >Find Issues</Button>
                     </Form>
                 )}
-            />
+            </Formik>
             {/* END OF FORMIK */}
         </div>
     );

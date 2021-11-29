@@ -20,7 +20,8 @@ import Drawer from '@mui/material/Drawer';
 const ProductValue = () => {
   const data = "Equinix Fabric";
   // console.log("value inside Product Value const")
-
+  
+//  const data = productName;
   return (
 
     <div>
@@ -204,8 +205,8 @@ for (let j = 0; j < 500; j++) {
   const [start, setStart] = useState(false);
   const [anchor, setAnchor] = useState(false);
   const [value, setvalue] = useState("test");
-  const [isDrawerOpened, toggleDrawerState] = useState(false)
-
+  const [isDrawerOpened, toggleDrawerState] = useState(false);
+  
 
 
 
@@ -255,6 +256,7 @@ for (let j = 0; j < 500; j++) {
             transitionDuration={{ enter: 100, exit: 200 }}
             anchor="left"
             open={isDrawerOpened}
+            // variant="permanent"
           >
             < ProductValue />
           </Drawer>
