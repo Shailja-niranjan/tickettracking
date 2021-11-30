@@ -14,6 +14,7 @@ export const Input = styled.input`
   height: 35px;
   border: 1px solid #ccc;
   background-color: #fff;
+  
 `;
 
 export const Button = styled.button`
@@ -47,8 +48,8 @@ export const Text = styled.p`
 `;
 
 export const Select = styled.select`
-  width: 280px;
-  height: 35px;
+  width: 285px;
+  height: 37px;
   border: 1px solid #ccc;
   background-color: #fff;
 `;
