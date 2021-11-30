@@ -23,7 +23,7 @@ export const Button = styled.button`
   background-color: #5995ef;
   color: #fff;
   border-radius: 3px;
- 
+  elevation: 0
 `;
 
 // Text

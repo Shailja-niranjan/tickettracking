@@ -26,8 +26,10 @@ function validateUuid(values) {
     return error;
   }
 
+
+
 function validateForm(formValues){
-    console.log("form values are : " + formValues.uuid + "product name "+ formValues.duration + " last value " + formValues.iteration);
+    console.log("%c form values are : " + formValues.uuid + "product name "+ formValues.duration + " last value " + formValues.iteration , 'background: #222; color: #bada55');
     let error = {}
     if (formValues.uuid === '') {
       error.uuid = 'Please enter uuid value';
@@ -36,45 +38,57 @@ function validateForm(formValues){
 
 }
 
+
+
+
 export default function StartJob() {
    
     return (
         <div>
-            <h3 style={{ marginLeft: "13px" }}>Start a New Job</h3>
+            <h3 style={{ marginLeft: "50px" }}>Start a New Job</h3>
             {/* FORMIK */}
             <Formik
                 initialValues={{
                     uuid: '',
+                    Job: '',
+                    packetpath : '',
+                    include_stat : '',
+                    duration: '',
+                    iteration: '',
                     // productname: ''
                   }}
                   validate={validateForm}
                   onSubmit={(submitValues) => { 
                       console.log("submit!"); 
-                      console.log("submitted values are : " + submitValues.uuid + ", " +  submitValues.duration + ", " + submitValues.iteration);
+                      console.log("submitted values are : " + submitValues.productname + " , " + submitValues.Job + " , " + submitValues.uuid + ", " + submitValues.packetpath + " , " +  submitValues.duration + ", " + submitValues.iteration);
 
                     }}
                     
                   >
-                {({ errors, touched, isValidating }) => (
-                    <Form  style={{ marginLeft: "13px",width: "400px", display: "flex", flexDirection: "column" }}>
+                {({ errors, touched, isValidating, resetForm, handleChange, handleReset, enableReinitialize }) => (
+                    <Form  style={{ marginLeft: "50px",width: "400px", display: "flex", flexDirection: "column" }}>
 
                         <Label>
                             Product Name
-                            <Input
+                            <Field
                                 type="text"
                                 name="productname"
                                 placeholder="Equinix Fabric"
                                 readOnly
-                                value = "Test Replace"
-                                style={{borderRadius: 5}}
+                                value = "Equinix Fabric"
+                                style={{width: "280px" , height: "35px", border: "1px solid #ccc" , backgroundColor: "#D3D3D3" , borderRadius: 5}}
                             />
                         </Label>
                         <Label>
                             Job*
-                            <Select name="Job" style={{borderRadius: 5}}>
-                                <option value="Fabric VC Sanity Check" label="Fabric VC Sanity Check" />
-                                <option value="Fabric VC Sanity Check" label="Fabric VC Sanity Check" />
-                                <option value="Fabric VC Sanity Check" label="Fabric VC Sanity Check" />
+                            <Select 
+                            name="Job" style={{borderRadius: 5}}
+                            onChange={handleChange}
+                            // value=  {Job}
+                            >
+                                {/* <option value="" label="Select a Value" /> */}
+                                <option value="Fabric VC Sanity Check-1" label="Fabric VC Sanity Check-1" />
+                                <option value="Fabric VC Sanity Check-2" label="Fabric VC Sanity Check-2" />
                             </Select>
 
                         </Label>
@@ -89,13 +103,16 @@ export default function StartJob() {
                         </Label>
                         <Label>
                             Packet Path Direction
-                            <Select name="packetpath" style={{borderRadius: 5}}>
+                            <Select name="packetpath" style={{borderRadius: 5}}
+                             onChange={handleChange}
+                             >
+                                <option value="" label="Select a Value" />
                                 <option value="A to Z" label="A to Z" />
                                 <option value="Z to A" label="Z to A" />
                             </Select>
 
                         </Label>
-                        <div style={{ float: "left" ,width: "280px"}}><FormControlLabel control={<Checkbox />} label="Include Stat" style={{ float: "left" }} /></div>
+                        <div style={{ float: "left" ,width: "280px"}}><FormControlLabel control={<Checkbox />} label="Include Stat" style={{ float: "left" }} name="include_stat"/></div>
                         <Label>
                             <div>
                                 <div style={{ float: "left" }}>
@@ -104,7 +121,7 @@ export default function StartJob() {
                                         <Field
                                             type="text"
                                             name="duration"
-                                            style={{ width: "120px", height: "35px" , borderRadius: 5}}
+                                            style={{ width: "120px", height: "35px" , borderRadius: 5, border: "1px solid #ccc"}}
                                         />
                                     </Label>
                                 </div>
@@ -114,17 +131,21 @@ export default function StartJob() {
                                 <div style={{marginLeft: "160px" ,alignItems: "center"}}>
                                     <Label>
                                         Iteration
-                                        <Field
+                                        <Field 
                                             type="text"
                                             name="iteration"
-                                            style={{ width: "120px", height: "35px",borderRadius: 5 }}
+                                            style={{ width: "120px", height: "35px",borderRadius: 5, border: "1px solid #ccc" }}
                                         />
                                     </Label>
                                 </div>
                             </div>
                         </Label>
-
-                        <Button type="submit" >Find Issues</Button>
+                        <div>
+                            <div style={{float: "left"}}><button type="submit" style={{width: "150px" , height: "35px" ,backgroundColor: "#006DB5" , border: "0px",borderRadius: 5,color:"white" }}>Find Issues</button></div>
+                            <div style={{alignItems: "center",marginLeft:"190px", cursor: "anchor", marginTop: "10px" }} onClick={handleReset} >Reset</div>
+                        </div>
+                        
+                        
                     </Form>
                 )}
             </Formik>
