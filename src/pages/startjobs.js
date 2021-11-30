@@ -16,30 +16,47 @@ const Label = styled.label`
   position: relative;
 `;
 
-function validateUuid(value) {
-    let error;
-    if (value === '') {
+function validateUuid(values) {
+    console.log("values are : " + values + ".");
+
+    let error = {}
+    if (values === '') {
       error = 'Please enter uuid value';
     }
     return error;
   }
 
+function validateForm(formValues){
+    console.log("form values are : " + formValues.uuid + "product name "+ formValues.duration + " last value " + formValues.iteration);
+    let error = {}
+    if (formValues.uuid === '') {
+      error.uuid = 'Please enter uuid value';
+    }
+    return error;
+
+}
+
 export default function StartJob() {
    
     return (
         <div>
-            <h3 style={{ marginLeft: "5px" }}>Start a New Job</h3>
+            <h3 style={{ marginLeft: "13px" }}>Start a New Job</h3>
             {/* FORMIK */}
             <Formik
                 initialValues={{
                     uuid: '',
+                    // productname: ''
                   }}
-                  onSubmit={values => {
-                    // same shape as initial values
-                    console.log(values);
-                  }}>
+                  validate={validateForm}
+                  onSubmit={(submitValues) => { 
+                      console.log("submit!"); 
+                      console.log("submitted values are : " + submitValues.uuid + ", " +  submitValues.duration + ", " + submitValues.iteration);
+
+                    }}
+                    
+                  >
                 {({ errors, touched, isValidating }) => (
-                    <Form  style={{ marginLeft: "5px",width: "300px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <Form  style={{ marginLeft: "13px",width: "400px", display: "flex", flexDirection: "column" }}>
 
                         <Label>
                             Product Name
@@ -48,11 +65,13 @@ export default function StartJob() {
                                 name="productname"
                                 placeholder="Equinix Fabric"
                                 readOnly
+                                value = "Test Replace"
+                                style={{borderRadius: 5}}
                             />
                         </Label>
                         <Label>
                             Job*
-                            <Select name="Job" >
+                            <Select name="Job" style={{borderRadius: 5}}>
                                 <option value="Fabric VC Sanity Check" label="Fabric VC Sanity Check" />
                                 <option value="Fabric VC Sanity Check" label="Fabric VC Sanity Check" />
                                 <option value="Fabric VC Sanity Check" label="Fabric VC Sanity Check" />
@@ -61,8 +80,7 @@ export default function StartJob() {
                         </Label>
                         <Label>
                             UUID*
-                            
-                            <Field validate={validateUuid}
+                            <Field style={{width: "280px" , height: "35px", border: "1px solid #ccc" , backgroundcolor: "#fff" , borderRadius: 5}}
                                 border={errors.uuid && "1px solid red"}
                                 name="uuid"
                                 placeholder="UUID"
@@ -71,7 +89,7 @@ export default function StartJob() {
                         </Label>
                         <Label>
                             Packet Path Direction
-                            <Select name="packetpath" >
+                            <Select name="packetpath" style={{borderRadius: 5}}>
                                 <option value="A to Z" label="A to Z" />
                                 <option value="Z to A" label="Z to A" />
                             </Select>
@@ -83,23 +101,23 @@ export default function StartJob() {
                                 <div style={{ float: "left" }}>
                                     <Label>
                                         Duration
-                                        <Input
+                                        <Field
                                             type="text"
                                             name="duration"
-                                            style={{ width: "120px", height: "35px" }}
+                                            style={{ width: "120px", height: "35px" , borderRadius: 5}}
                                         />
                                     </Label>
                                 </div>
 
                                 {/* </Label>
                                 <Label>   */}
-                                <div style={{ float: "right", marginLeft: "20px" }}>
+                                <div style={{marginLeft: "160px" ,alignItems: "center"}}>
                                     <Label>
                                         Iteration
-                                        <Input
+                                        <Field
                                             type="text"
                                             name="iteration"
-                                            style={{ width: "120px", height: "35px" }}
+                                            style={{ width: "120px", height: "35px",borderRadius: 5 }}
                                         />
                                     </Label>
                                 </div>
