@@ -21,7 +21,7 @@ import Drawer from '@mui/material/Drawer';
 
 
 
-  const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 650,
     display: "flex",
@@ -86,7 +86,7 @@ const style = {
 function TabPanel(props) {
   const { children, value, index } = props;
 
-  
+
 
   return (
     <div
@@ -185,10 +185,10 @@ for (let j = 0; j < 33; j++) {
 
 
 
-  const JobListing = () =>{
+const JobListing = () => {
 
-  
-  const classes = useStyles();  
+
+  const classes = useStyles();
   const [hasMore, setHasMore] = useState(false);
   const [start, setStart] = useState(false);
   const [anchor, setAnchor] = useState(false);
@@ -198,22 +198,24 @@ for (let j = 0; j < 33; j++) {
   const [productName, setProductName] = useState();
 
   const ProductValue = () => {
-  
+
     return (
-  
+
       <div>
         <StartJob data={productName} />
       </div>
     );
   }
-  
+
+  const handleDrawerClose = () => {
+    toggleDrawerState(false);
+  }
+
+  const updateProductName = (pName) => {
+    setProductName(pName);
+  };
 
 
-  const updateProductName = (pName) => {  
-    setProductName(pName); 
-   }; 
-
-  
   const fetchMoreData = () => {
     if (this.state.items.length >= 100) {
       this.setState({ hasMore: false });
@@ -229,12 +231,10 @@ for (let j = 0; j < 33; j++) {
   };
 
 
-
-
   return (
 
     <Box sx={{ width: '100%' }}>
-      <button onClick={() => {updateProductName("Equinix Fabric-From list"); toggleDrawerState(true)}}>Start Job</button>
+      <button onClick={() => { updateProductName("Equinix Fabric-From list"); toggleDrawerState(true) }}>Start Job</button>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} aria-label="basic tabs example">
           <Tab label="My jobs" style={{ borderWidth: 1 }} {...a11yProps(0)} />
@@ -243,13 +243,13 @@ for (let j = 0; j < 33; j++) {
         </Tabs>
         <div>
           <Drawer
-            transitionDuration={{ enter: 500, exit: 1000 }}
+            transitionDuration={{ enter: 500, exit: 500 }}
             anchor="left"
             open={isDrawerOpened}
             variant="temporary"
+            onBackdropClick={handleDrawerClose}
           >
             < ProductValue />
-            {/* < ProductValue data={productName.data} /> */}
           </Drawer>
         </div>
 
@@ -327,10 +327,6 @@ for (let j = 0; j < 33; j++) {
                       </thead>
                     </div>
                   ))}
-
-
-
-
                 </InfiniteScroll>
               </TableBody>
             </div>
