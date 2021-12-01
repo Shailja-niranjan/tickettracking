@@ -1,4 +1,4 @@
-import React, { Component, useState, setState } from 'react';
+import React, { Component, useState, setState, useEffect } from 'react';
 import { render } from 'react-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -187,42 +187,28 @@ const tempJobList = [
 
 let JobList = []
 
-for (let j = 0; j < 500; j++) {
+for (let j = 0; j < 33; j++) {
 
   { Object.keys(tempJobList).map(item => (JobList.push(tempJobList[item]))) }
 }
 
-// const classes = useStyles;
 
 
-// function JobListing() {
+
   const JobListing = () =>{
 
   
-  const classes = useStyles();
-  const [items, setJobList] = useState([]);
+  const classes = useStyles();  
   const [hasMore, setHasMore] = useState(false);
   const [start, setStart] = useState(false);
   const [anchor, setAnchor] = useState(false);
-  const [value, setvalue] = useState("test");
-  const [isDrawerOpened, toggleDrawerState] = useState(false);
+  const [value, setvalue] = useState(1);
+  const [isDrawerOpened, toggleDrawerState] = React.useState(false);
+  const [items, setJobList] = useState(JobList);
+
   
-
-
-
-  // toggleDrawerState = () => {
-  //   isDrawerOpened: true,
-  // };
-
-  for (let j = 0; j < 170; j++) {
-
-    { Object.keys(tempJobList).map(item => (items.push(tempJobList[item]))) }
-  }
-
-
-
   const fetchMoreData = () => {
-    if (this.state.items.length >= 500) {
+    if (this.state.items.length >= 100) {
       this.setState({ hasMore: false });
       return;
     }
@@ -238,13 +224,10 @@ for (let j = 0; j < 500; j++) {
 
 
 
-
-
-
   return (
 
     <Box sx={{ width: '100%' }}>
-      <button onClick={() => toggleDrawerState(true)}>Start Job</button>
+      <button onClick={() => {toggleDrawerState(true)}}>Start Job</button>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} aria-label="basic tabs example">
           <Tab label="My jobs" style={{ borderWidth: 1 }} {...a11yProps(0)} />
@@ -253,10 +236,10 @@ for (let j = 0; j < 500; j++) {
         </Tabs>
         <div>
           <Drawer
-            transitionDuration={{ enter: 100, exit: 200 }}
+            transitionDuration={{ enter: 500, exit: 1000 }}
             anchor="left"
             open={isDrawerOpened}
-            // variant="permanent"
+            variant="temporary"
           >
             < ProductValue />
           </Drawer>
