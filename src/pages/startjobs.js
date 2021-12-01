@@ -4,7 +4,7 @@ import { Formik, Field, Form , ErrorMessage } from "formik";
 import { Input, Title, Text, Button, Select } from "./theme.js";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import * as Yup from 'yup';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 const Label = styled.label`
   display: flex;
@@ -41,11 +41,12 @@ function validateForm(formValues){
 
 
 
-export default function StartJob() {
-   
+export default function StartJob(props) {
+
+    console.log("parent value : " + props.data)
     return (
         <div>
-            <h3 style={{ marginLeft: "50px" }}>Start a New Job</h3>
+           <h3 style={{ marginLeft: "50px" }}>Start a New Job</h3>
             {/* FORMIK */}
             <Formik
                 initialValues={{
@@ -75,7 +76,7 @@ export default function StartJob() {
                                 name="productname"
                                 placeholder="Equinix Fabric"
                                 readOnly
-                                value = "Equinix Fabric"
+                                value = {props.data}
                                 style={{width: "280px" , height: "35px", border: "1px solid #ccc" , backgroundColor: "#D3D3D3" , borderRadius: 5}}
                             />
                         </Label>
@@ -140,8 +141,9 @@ export default function StartJob() {
                                 </div>
                             </div>
                         </Label>
+                        <div style={{marginLeft: "370px"}}><ArrowLeftIcon color="black" /></div>
                         <div>
-                            <div style={{float: "left"}}><button type="submit" style={{width: "150px" , height: "35px" ,backgroundColor: "#006DB5" , border: "0px",borderRadius: 5,color:"white" }}>Find Issues</button></div>
+                            <div style={{float: "left"}}><button type="submit" style={{width: "150px" , height: "35px" ,backgroundColor: "#006DB5" , border: "0px",borderRadius: 5,color:"white" }} >Find Issues</button></div>
                             <div style={{alignItems: "center",marginLeft:"190px", cursor: "anchor", marginTop: "10px" }} onClick={handleReset} >Reset</div>
                         </div>
                         

@@ -17,18 +17,6 @@ import Box from '@mui/material/Box';
 import StartJob from '../pages/startjobs.js';
 import Drawer from '@mui/material/Drawer';
 
-const ProductValue = () => {
-  const data = "Equinix Fabric";
-  // console.log("value inside Product Value const")
-  
-//  const data = productName;
-  return (
-
-    <div>
-      <StartJob data={data} />
-    </div>
-  );
-}
 
 
 
@@ -97,6 +85,8 @@ const style = {
 
 function TabPanel(props) {
   const { children, value, index } = props;
+
+  
 
   return (
     <div
@@ -205,6 +195,23 @@ for (let j = 0; j < 33; j++) {
   const [value, setvalue] = useState(1);
   const [isDrawerOpened, toggleDrawerState] = React.useState(false);
   const [items, setJobList] = useState(JobList);
+  const [productName, setProductName] = useState();
+
+  const ProductValue = () => {
+  
+    return (
+  
+      <div>
+        <StartJob data={productName} />
+      </div>
+    );
+  }
+  
+
+
+  const updateProductName = (pName) => {  
+    setProductName(pName); 
+   }; 
 
   
   const fetchMoreData = () => {
@@ -227,7 +234,7 @@ for (let j = 0; j < 33; j++) {
   return (
 
     <Box sx={{ width: '100%' }}>
-      <button onClick={() => {toggleDrawerState(true)}}>Start Job</button>
+      <button onClick={() => {updateProductName("Equinix Fabric-From list"); toggleDrawerState(true)}}>Start Job</button>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} aria-label="basic tabs example">
           <Tab label="My jobs" style={{ borderWidth: 1 }} {...a11yProps(0)} />
@@ -242,6 +249,7 @@ for (let j = 0; j < 33; j++) {
             variant="temporary"
           >
             < ProductValue />
+            {/* < ProductValue data={productName.data} /> */}
           </Drawer>
         </div>
 
