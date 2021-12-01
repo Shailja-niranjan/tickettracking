@@ -4,7 +4,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Input, Title, Text, Button, Select } from "./theme.js";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+
 
 
 const Label = styled.label`
@@ -44,7 +45,17 @@ export default function StartJob(props) {
     console.log("parent value : " + props.data)
     return (
         <div>
-            <h3 style={{ marginLeft: "50px" }}>Start a New Job</h3>
+            <div style={{display: "flex"}}>
+                <div style={{width: "70%"}}> 
+                    <h3 style={{ marginLeft: "50px" }}>Start a New Job</h3>
+                </div>
+                <div style={{float: "right", width: "30%"}}>                    
+                    <div style={{ marginLeft: "90px"}}>
+                        <ChevronLeftIcon style={{ fontSize: 50 }} color="black" />
+                    </div>
+                </div>
+            </div>
+           
             {/* FORMIK */}
             <Formik
                 initialValues={{
@@ -145,7 +156,7 @@ export default function StartJob(props) {
                                 </div>
                             </div>
                         </Label>
-                        <div style={{ marginLeft: "370px" }}><ArrowLeftIcon color="black" /></div>
+                        
                         <div>
                             <div style={{ float: "left" }}><button  type="submit" style={{ width: "150px", height: "35px", backgroundColor: "#006DB5", border: "0px", borderRadius: 5, color: "white" }} disabled={Formik.dirty}>Find Issues</button></div>
                             <div style={{ alignItems: "center", marginLeft: "190px", cursor: "anchor", marginTop: "10px" }} onClick={handleReset} >Reset</div>
