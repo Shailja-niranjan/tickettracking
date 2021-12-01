@@ -51,7 +51,7 @@ export default function StartJob(props) {
                 </div>
                 <div style={{float: "right", width: "30%"}}>                    
                     <div style={{ marginLeft: "90px"}}>
-                        <ChevronLeftIcon style={{ fontSize: 50 }} color="black" />
+                        <ChevronLeftIcon style={{ fontSize: 50, color: "gray" }}/>
                     </div>
                 </div>
             </div>
