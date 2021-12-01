@@ -71,7 +71,7 @@ export default function StartJob(props) {
                 validate={validateForm}
                 onSubmit={(submitValues) => {
                     console.log("submit!");
-                    console.log("submitted values are : " + submitValues.productname + " , " + submitValues.Job + " , " + submitValues.uuid + ", " + submitValues.packetpath + " , " + submitValues.duration + ", " + submitValues.iteration);
+                    console.log("submitted values are ==> product name : " + props.data + " , Job : " + submitValues.Job + " , UUID : " + submitValues.uuid + ", PacketPath : " + submitValues.packetpath + " , Duraton : " + submitValues.duration + ", Iteration : " + submitValues.iteration);
 
                 }}
 
