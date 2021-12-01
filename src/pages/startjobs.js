@@ -29,7 +29,7 @@ function validateUuid(values) {
 
 function validateForm(formValues) {
 
-    console.log("%c form values are : " + formValues.uuid + "product name " + formValues.duration + " last value " + formValues.iteration, 'background: #222; color: #bada55');
+    // console.log("%c form values are : " + formValues.uuid + "product name " + formValues.duration + " last value " + formValues.iteration, 'background: #222; color: #bada55');
     let error = {}
     if (formValues.uuid === '') {
         error.uuid = 'Please enter uuid value';
@@ -53,6 +53,7 @@ export default function StartJob(props) {
                     include_stat: '',
                     duration: '',
                     iteration: '',
+
                     // productname: ''
                 }}
                 validate={validateForm}
@@ -63,7 +64,7 @@ export default function StartJob(props) {
                 }}
 
             >
-                {({ errors, touched, isValidating, resetForm, handleChange, handleReset, enableReinitialize }) => (
+                {({ values, errors, touched, isValidating, resetForm, handleChange, handleReset, enableReinitialize }) => (
                     <Form style={{ marginLeft: "50px", width: "400px", display: "flex", flexDirection: "column" }}>
 
                         <Label>
@@ -80,13 +81,14 @@ export default function StartJob(props) {
                         <Label>
                             Job*
                             <Select
-                                name="Job" style={{ borderRadius: 5 }}
+                                name="Job" 
                                 onChange={handleChange}
-                            // value=  {Job}
+                                value=  {values.Job}
+                                style={{ borderRadius: 5 }}
                             >
-                                {/* <option value="" label="Select a Value" /> */}
-                                <option value="Fabric VC Sanity Check-1" label="Fabric VC Sanity Check-1" />
-                                <option value="Fabric VC Sanity Check-2" label="Fabric VC Sanity Check-2" />
+                                <option value="" label="Select a Value" />
+                                <option value="Fabric VC Sanity -1" label="Fabric VC Sanity-1" />
+                                <option value="Fabric VC Sanity -2" label="Fabric VC Sanity-2" />
                             </Select>
 
                         </Label>
@@ -101,8 +103,12 @@ export default function StartJob(props) {
                         </Label>
                         <Label>
                             Packet Path Direction
-                            <Select name="packetpath" style={{ borderRadius: 5 }}
+                            <Select 
+                                name="packetpath" 
+                                style={{ borderRadius: 5 }}
                                 onChange={handleChange}
+                                value=  {values.packetpath}
+                                
                             >
                                 <option value="" label="Select a Value" />
                                 <option value="A to Z" label="A to Z" />
