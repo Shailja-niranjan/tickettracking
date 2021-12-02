@@ -158,7 +158,7 @@ export default function StartJob(props) {
                         </Label>
                         
                         <div>
-                            <div style={{ float: "left" }}><button  type="submit" style={{ width: "150px", height: "35px", backgroundColor: "#006DB5", border: "0px", borderRadius: 5, color: "white" }} disabled={Formik.dirty}>Find Issues</button></div>
+                            <div style={{ float: "left" }}><button  type="submit" style={{ width: "150px", height: "35px", backgroundColor: "#006DB5", border: "0px", borderRadius: 5, color: "white" }} disabled={ !(Object.keys(touched).length)} >Find Issues</button></div>
                             <div style={{ alignItems: "center", marginLeft: "190px", cursor: "anchor", marginTop: "10px" }} onClick={handleReset} >Reset</div>
                         </div>
 
