@@ -62,7 +62,7 @@ export default function StartJob(props) {
                     uuid: '',
                     Job: '',
                     packetpath: '',
-                    include_stat: '',
+                    include_stat: false,
                     duration: '',
                     iteration: '',
 
@@ -71,7 +71,7 @@ export default function StartJob(props) {
                 validate={validateForm}
                 onSubmit={(submitValues) => {
                     console.log("submit!");
-                    console.log("submitted values are ==> product name : " + props.data + " , Job : " + submitValues.Job + " , UUID : " + submitValues.uuid + ", PacketPath : " + submitValues.packetpath + " , Duraton : " + submitValues.duration + ", Iteration : " + submitValues.iteration);
+                    console.log("submitted values are ==> product name : " + props.data + " , Job : " + submitValues.Job + " , UUID : " + submitValues.uuid + ", PacketPath : " + submitValues.packetpath + " , Include stat : " + submitValues.include_stat + " ,  Duraton : " + submitValues.duration + ", Iteration : " + submitValues.iteration);
 
                 }}
 
@@ -128,7 +128,17 @@ export default function StartJob(props) {
                             </Select>
 
                         </Label>
-                        <div style={{ float: "left", width: "280px" }}><FormControlLabel control={<Checkbox />} label="Include Stat" style={{ float: "left" }} name="include_stat" /></div>
+                        {/* <div style={{ float: "left", width: "280px" }}><FormControlLabel control={<Checkbox />} label="Include Stat" style={{ float: "left" }} name="include_stat" /></div> */}
+                        
+                        <div style={{ float: "left", width: "280px" ,marginTop: "5px" , marginBottom: "5px"}}>
+                        <Field
+                                type="checkbox"
+                                name="include_stat"
+                                id="include_stat"
+                                
+                            /> Include Stat
+                         </div>  
+                                     
                         <Label>
                             <div>
                                 <div style={{ float: "left" }}>
@@ -159,7 +169,12 @@ export default function StartJob(props) {
                         
                         <div>
                             <div style={{ float: "left" }}><button  type="submit" style={{ width: "150px", height: "35px", backgroundColor: "#006DB5", border: "0px", borderRadius: 5, color: "white" }} disabled={ !(Object.keys(touched).length)} >Find Issues</button></div>
-                            <div style={{ alignItems: "center", marginLeft: "190px", cursor: "anchor", marginTop: "10px" }} onClick={handleReset} >Reset</div>
+                            {/* <div style={{ alignItems: "center", marginLeft: "190px", cursor: "anchor", marginTop: "10px" }} onClick={handleReset} >Reset</div> */}
+                            <div style={{ alignItems: "center", marginLeft: "190px", cursor: "anchor", marginTop: "8px" }}>
+                                <button type="reset">
+                                    Reset
+                                </button>
+                            </div>    
                         </div>
 
 
