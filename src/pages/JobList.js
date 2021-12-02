@@ -202,7 +202,7 @@ const JobListing = () => {
     return (
 
       <div>
-        <StartJob data={productName} />
+        <StartJob data={productName} handleDrawerClose={handleDrawerClose}/>
       </div>
     );
   }

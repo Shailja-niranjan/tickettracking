@@ -51,7 +51,7 @@ export default function StartJob(props) {
                 </div>
                 <div style={{float: "right", width: "30%"}}>                    
                     <div style={{ marginLeft: "90px"}}>
-                        <ChevronLeftIcon style={{ fontSize: 50, color: "gray" }}/>
+                        <ChevronLeftIcon onClick={props.handleDrawerClose} style={{ fontSize: 50, color: "gray" }}/>
                     </div>
                 </div>
             </div>
