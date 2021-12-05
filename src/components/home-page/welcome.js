@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Tooltip from '@mui/material/Tooltip';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
@@ -60,7 +61,7 @@ export default function WelcomeMenu() {
                     "aria-labelledby": "basic-button"
                 }}
             >
-                <MenuItem onClick={handleClose} style={{ width: "200px" }}>Logout</MenuItem>
+                <MenuItem onClick={handleClose} style={{ width: "200px" }}>Logout <LogoutIcon style={{marginLeft: "100px"}}/></MenuItem>
             </Menu>
 
         </div>
