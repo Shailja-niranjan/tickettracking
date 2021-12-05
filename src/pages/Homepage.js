@@ -40,6 +40,8 @@ import TableRow from '@mui/material/TableRow';
 // import Header from "./pages/Header"
 import Grid from '@mui/material/Grid';
 import { bgcolor, fontWeight } from '@mui/system';
+import Stack from '@mui/material/Stack';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,16 +86,17 @@ export default function Homepage() {
         <Grid item xs={6}>
            <SearchBar />
         </Grid>
-        <Grid item xs={3}>
+        <Stack direction="row" spacing={2}>
           <div style={{ textAlign: 'right', 
                         display: 'flex',
                         alignItems: 'center',
-                        flexWrap: 'wrap'}}>
+                        flexWrap: 'wrap',
+                        }}>
             <HelpOption />
             <SettingOption />
             <WelcomeOption />
           </div>
-        </Grid>
+        </Stack>
       </Grid>
 
       {/* App Bar */}
