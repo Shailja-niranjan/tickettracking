@@ -1,4 +1,5 @@
 import React from "react";
+import "../../css/welcome.css"
 //import PermIdentitySharpIcon from '@material-ui/icons/PermIdentitySharp';
 import Avatar from '@mui/material/Avatar';
 import Typography from "@mui/material/Typography";
@@ -21,15 +22,12 @@ export default function WelcomeMenu() {
         console.log("logout")
         setAnchorEl(null);
     };
+    
+    const user_name = "Test FN Test LN kjjkjmkmjlknmk";
 
     return (
 
-        <div style={{
-            textAlign: 'left',
-            display: 'flex',
-            alignItems: 'center',
-            flexWrap: 'wrap'
-        }}>
+        <div className="user-profile">
             {/* <PermIdentitySharpIcon /><span style={{marginRight: "10px", color:"blue", fontWeight: "600" }}>Welcome</span> */}
             <Button
                 id="basic-button"
@@ -40,15 +38,9 @@ export default function WelcomeMenu() {
             >
                 <Avatar />
             </Button>
-            <Tooltip title="Test FN Test LN kjjkjmkmjlknmk" placement="bottom">
-                <Typography style={{
-                    fontSize: "11px",
-                    whiteSpace: "nowrap",
-                    maxWidth: "110px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis"
-                }}
-                >Test FN Test LN kjjkjmkmjlknmk<br />
+           
+            <Tooltip title={user_name} placement="bottom">
+                <Typography className = "user-name-text"  >{user_name}<br />
                     <span style={{ color: "gray" }}>Welcome</span>
                 </Typography>
             </Tooltip>

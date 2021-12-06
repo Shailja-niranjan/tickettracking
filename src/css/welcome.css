@@ -1,0 +1,17 @@
+.user-profile{
+    text-align: left;
+    display: flex;
+    align-Items: center ;
+    flex-wrap: wrap;
+
+
+}
+
+.user-name-text{
+    font-size: 0.75rem !important ;
+    white-space: nowrap ;
+    max-width: 110px ;
+    overflow: hidden ;
+    text-overflow: ellipsis ;
+
+}
