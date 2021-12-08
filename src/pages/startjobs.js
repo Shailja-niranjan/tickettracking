@@ -18,6 +18,8 @@ const Label = styled.label`
   position: relative;
 `;
 
+
+
 function validateUuid(values) {
     console.log("values are : " + values + ".");
 
@@ -49,11 +51,11 @@ export default function StartJob(props) {
                 <div style={{width: "70%"}}> 
                     <h3 style={{ marginLeft: "50px" }}>Start a New Job</h3>
                 </div>
-                <div style={{float: "right", width: "30%"}}>                    
+                {/* <div style={{float: "right", width: "30%"}}>                    
                     <div style={{ marginLeft: "90px"}}>
                         <ChevronLeftIcon onClick={props.handleDrawerClose} style={{ fontSize: 50, color: "gray" }}/>
                     </div>
-                </div>
+                </div> */}
             </div>
            
             {/* FORMIK */}
@@ -74,7 +76,7 @@ export default function StartJob(props) {
                     console.log("submitted values are ==> product name : " + props.data + " , Job : " + submitValues.Job + " , UUID : " + submitValues.uuid + ", PacketPath : " + submitValues.packetpath + " , Include stat : " + submitValues.include_stat + " ,  Duraton : " + submitValues.duration + ", Iteration : " + submitValues.iteration);
 
                 }}
-
+                
             >
                 {({ values, errors, touched, isValidating, resetForm, handleChange, handleReset, enableReinitialize }) => (
                     <Form style={{ marginLeft: "50px", width: "400px", display: "flex", flexDirection: "column" }}>
@@ -166,6 +168,20 @@ export default function StartJob(props) {
                                 </div>
                             </div>
                         </Label>
+                        <div style={{float: "right", width: "30%" }}>                    
+                            <div style={{ marginLeft: "90px" }}>
+                                <ChevronLeftIcon onClick={props.handleDrawerClose} 
+                                                 style={{   backgroundColor: "#eee",
+                                                            position: "absolute",
+                                                            top: "376px" ,
+                                                            right: "9px" ,
+                                                            padding: "38px 11px" ,
+                                                            borderRadius: "0px 16px 16px 0px" ,
+                                                            cursor: "pointer" ,
+                                                            transform: "translateX(-100%)"
+                                                         }}/>
+                            </div>
+                        </div>
                         
                         <div>
                             <div style={{ float: "left" }}><button  type="submit" style={{ width: "150px", height: "35px", backgroundColor: "#006DB5", border: "0px", borderRadius: 5, color: "white" }} disabled={ !(Object.keys(touched).length)} >Find Issues</button></div>
